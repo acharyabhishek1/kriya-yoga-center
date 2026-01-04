@@ -1,0 +1,1855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- 
+    Kriya Yoga Center - One-page static site
+    Tech: Pure HTML + CSS, tiny vanilla JS for scroll fade + accessibility
+    Netlify-ready contact form
+  -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kriya Yoga Center | Traditional Yoga in Ho Chi Minh City</title>
+  <meta name="description" content="Kriya Yoga Center in Ho Chi Minh City offers traditional yoga, trauma and emotional healing, and modern lifestyle integration." />
+  <style>
+    /* -------------------------
+       ROOT & GLOBAL STYLES
+    -------------------------- */
+    :root {
+      --bg: #f6efe5;           /* soft golden / beige */
+      --bg-alt: #f2e5d6;
+      --bg-soft: #fbf6ef;
+      --saffron: #e79b38;
+      --saffron-soft: rgba(231, 155, 56, 0.14);
+      --maroon: #7a2430;
+      --maroon-soft: rgba(122, 36, 48, 0.1);
+      --charcoal: #262629;
+      --charcoal-soft: rgba(38, 38, 41, 0.75);
+      --border-subtle: rgba(38, 38, 41, 0.08);
+      --radius-lg: 18px;
+      --radius-md: 14px;
+      --radius-pill: 999px;
+      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.10);
+      --shadow-card: 0 14px 34px rgba(0, 0, 0, 0.09);
+      --shadow-subtle: 0 8px 20px rgba(0, 0, 0, 0.06);
+      --transition-fast: 180ms ease-out;
+      --transition-med: 240ms ease-out;
+      --container-width: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #fdf5ea 0, var(--bg) 40%, #f7efe3 100%);
+      color: var(--charcoal);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    /* -------------------------
+       TYPOGRAPHY
+       (Use <link> to real webfonts in production if desired)
+    -------------------------- */
+    .heading-serif {
+      font-family: "Georgia", "Times New Roman", serif;
+      letter-spacing: 0.04em;
+    }
+
+    h1, h2, h3, h4 {
+      margin: 0 0 0.4em;
+      font-weight: 500;
+      color: var(--charcoal);
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 4vw, 3.3rem);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      font-size: clamp(1.5rem, 2.4vw, 2rem);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    p {
+      margin: 0 0 1em;
+      font-size: 0.98rem;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      font-size: 0.72rem;
+      color: var(--charcoal-soft);
+    }
+
+    /* -------------------------
+       LAYOUT HELPERS
+    -------------------------- */
+    .page-shell {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container-width);
+      padding: 0 1.5rem;
+      margin: 0 auto;
+    }
+
+    section {
+      padding: 4.5rem 0 4.75rem;
+      position: relative;
+    }
+
+    @media (min-width: 900px) {
+      section {
+        padding: 5.5rem 0 5.75rem;
+      }
+    }
+
+    .section-header {
+      max-width: 620px;
+      margin: 0 auto 2.8rem;
+      text-align: center;
+    }
+
+    .section-header p {
+      margin-top: 0.6rem;
+      color: var(--charcoal-soft);
+    }
+
+    .section-divider {
+      width: 52px;
+      height: 2px;
+      border-radius: 999px;
+      margin: 1.4rem auto 0;
+      background: linear-gradient(90deg, var(--saffron), var(--maroon));
+    }
+
+    /* Scroll fade-in utility (JS toggles .is-visible) */
+    .fade-section {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity var(--transition-med), transform var(--transition-med);
+    }
+
+    .fade-section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Focus-visible outline */
+    :focus-visible {
+      outline: 2px solid var(--saffron);
+      outline-offset: 3px;
+    }
+
+    /* -------------------------
+       HEADER / NAV
+    -------------------------- */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(to bottom, rgba(246, 239, 229, 0.96), rgba(246, 239, 229, 0.88));
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 1.5rem 0.85rem;
+      max-width: var(--container-width);
+      margin: 0 auto;
+      gap: 1.25rem;
+    }
+
+    .brand-mark {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .brand-logo-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: conic-gradient(from 160deg, var(--saffron), var(--maroon), var(--saffron));
+      box-shadow: 0 0 0 2px rgba(246, 239, 229, 0.92), 0 10px 22px rgba(0, 0, 0, 0.18);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brand-logo-circle::after {
+      content: "";
+      position: absolute;
+      inset: 18%;
+      border-radius: 50%;
+      border: 2px solid rgba(246, 239, 229, 0.85);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-text span:first-child {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--charcoal-soft);
+    }
+
+    .brand-text span:last-child {
+      font-size: 0.84rem;
+      font-weight: 600;
+    }
+
+    .nav-links {
+      display: none;
+      align-items: center;
+      gap: 1.8rem;
+      font-size: 0.84rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 0.15rem;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1px;
+      background: linear-gradient(90deg, var(--saffron), var(--maroon));
+      transition: width var(--transition-fast);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    @media (min-width: 860px) {
+      .nav-links {
+        display: flex;
+      }
+    }
+
+    .lang-toggle {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 0.18rem;
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(231, 155, 56, 0.35);
+      box-shadow: var(--shadow-subtle);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    .lang-toggle button {
+      border: none;
+      background: transparent;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      cursor: pointer;
+      color: var(--charcoal-soft);
+      transition: background var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .lang-toggle button[data-active="true"] {
+      background: linear-gradient(135deg, var(--saffron), var(--maroon));
+      color: #fff;
+      box-shadow: 0 10px 18px rgba(122, 36, 48, 0.32);
+    }
+
+    /* -------------------------
+       HERO
+    -------------------------- */
+    .hero {
+      position: relative;
+      padding: 4.75rem 0 4.5rem;
+      background:
+        radial-gradient(circle at 10% 0, rgba(231, 155, 56, 0.35), transparent 60%),
+        radial-gradient(circle at 90% 0, rgba(122, 36, 48, 0.32), transparent 55%),
+        linear-gradient(180deg, #f9f1e7 0, #f5ebdf 38%, #f6efe5 100%);
+      overflow: hidden;
+    }
+
+    @media (min-width: 900px) {
+      .hero {
+        padding: 6rem 0 5.5rem;
+      }
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      opacity: 0.55;
+      filter: blur(0.2px);
+      pointer-events: none;
+    }
+
+    .hero::before {
+      inset: 8% 12% auto;
+    }
+
+    .hero::after {
+      inset: auto 18% 6%;
+    }
+
+    .hero-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-logo {
+      width: 78px;
+      height: 78px;
+      margin: 0 auto 1.25rem;
+      border-radius: 50%;
+      background: conic-gradient(from 180deg, var(--saffron), var(--maroon), var(--saffron));
+      display: grid;
+      place-items: center;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+      overflow: hidden;
+      transform-origin: center;
+      animation: heroFloat 11s ease-in-out infinite;
+    }
+
+    .hero-logo-inner {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(246, 239, 229, 0.96), rgba(246, 239, 229, 0.15));
+      border: 2px solid rgba(246, 239, 229, 0.95);
+      display: grid;
+      place-items: center;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--maroon);
+    }
+
+    .hero-subtitle {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: rgba(38, 38, 41, 0.8);
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-tagline {
+      font-size: 1rem;
+      font-style: italic;
+      margin-bottom: 1.6rem;
+      color: var(--charcoal-soft);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 2.4rem;
+      font-size: 0.84rem;
+      color: var(--charcoal-soft);
+    }
+
+    @media (min-width: 700px) {
+      .hero-meta {
+        flex-direction: row;
+        justify-content: center;
+      }
+    }
+
+    .meta-pill {
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(231, 155, 56, 0.45);
+      background: rgba(246, 239, 229, 0.92);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      white-space: nowrap;
+    }
+
+    .meta-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--maroon);
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    @media (min-width: 600px) {
+      .hero-ctas {
+        flex-direction: row;
+        justify-content: center;
+      }
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding: 0.8rem 1.6rem;
+      border-radius: var(--radius-pill);
+      border: none;
+      cursor: pointer;
+      background-image: linear-gradient(135deg, var(--maroon), var(--saffron));
+      color: #fff;
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      box-shadow: 0 18px 34px rgba(122, 36, 48, 0.38);
+      transition: transform var(--transition-med), box-shadow var(--transition-med), background-position 240ms ease-out;
+      background-size: 160% 160%;
+      background-position: 0% 40%;
+    }
+
+    .btn-primary span.icon {
+      font-size: 1.1rem;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px) scale(1.01);
+      box-shadow: 0 22px 40px rgba(122, 36, 48, 0.46);
+      background-position: 80% 60%;
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+      box-shadow: 0 10px 24px rgba(122, 36, 48, 0.38);
+    }
+
+    .btn-secondary-link {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: rgba(38, 38, 41, 0.78);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      position: relative;
+    }
+
+    .btn-secondary-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -0.35rem;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(122, 36, 48, 0.16), rgba(231, 155, 56, 0.85));
+      transform-origin: left;
+      transform: scaleX(0.5);
+      opacity: 0.7;
+      transition: transform var(--transition-fast), opacity var(--transition-fast);
+    }
+
+    .btn-secondary-link:hover::after {
+      transform: scaleX(1);
+      opacity: 1;
+    }
+
+    .scroll-hint {
+      margin-top: 3rem;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: rgba(38, 38, 41, 0.6);
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 32px;
+      background: linear-gradient(to bottom, rgba(122, 36, 48, 0), rgba(122, 36, 48, 0.65));
+      transform-origin: top;
+      animation: scrollPulse 1.4s ease-in-out infinite;
+    }
+
+    /* -------------------------
+       ABOUT
+    -------------------------- */
+    .about-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr);
+      gap: 2.6rem;
+      align-items: start;
+    }
+
+    @media (min-width: 860px) {
+      .about-layout {
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+        gap: 3.5rem;
+      }
+    }
+
+    .about-body {
+      font-size: 0.98rem;
+      color: var(--charcoal-soft);
+      max-width: 620px;
+    }
+
+    .about-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 1rem;
+    }
+
+    .about-pill {
+      padding: 0.32rem 0.85rem;
+      border-radius: 999px;
+      border: 1px solid rgba(122, 36, 48, 0.26);
+      background: rgba(255, 255, 255, 0.96);
+      font-size: 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.32rem;
+    }
+
+    .about-pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--saffron), var(--maroon));
+    }
+
+    .about-aside {
+      border-radius: var(--radius-lg);
+      padding: 1.6rem 1.5rem;
+      background: radial-gradient(circle at top left, rgba(231, 155, 56, 0.16), rgba(246, 239, 229, 0.95));
+      border: 1px solid rgba(231, 155, 56, 0.35);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-aside::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background-image: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.6) 0, transparent 52%),
+        radial-gradient(circle at 100% 100%, rgba(255, 255, 255, 0.4) 0, transparent 55%);
+      mix-blend-mode: soft-light;
+      opacity: 0.75;
+      pointer-events: none;
+    }
+
+    .about-aside-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-aside-title {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      margin-bottom: 0.85rem;
+      color: rgba(38, 38, 41, 0.7);
+    }
+
+    .about-aside-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.4rem 0 0;
+      display: grid;
+      gap: 0.45rem;
+      font-size: 0.86rem;
+    }
+
+    .about-aside-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .about-aside-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: rgba(122, 36, 48, 0.06);
+      display: grid;
+      place-items: center;
+      color: var(--maroon);
+      font-size: 0.8rem;
+    }
+
+    /* -------------------------
+       PRACTICES / OFFERINGS
+    -------------------------- */
+    .offerings-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1.4rem;
+    }
+
+    @media (min-width: 640px) {
+      .offerings-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 992px) {
+      .offerings-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .offering-card {
+      position: relative;
+      border-radius: var(--radius-md);
+      padding: 1.15rem 1.05rem 1.15rem;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(231, 155, 56, 0.22);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.07);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      transform-origin: center;
+      transition: transform var(--transition-med), box-shadow var(--transition-med), border-color var(--transition-med), background var(--transition-med);
+    }
+
+    .offering-card::before {
+      content: "";
+      position: absolute;
+      inset: -30%;
+      background-image: radial-gradient(circle at 0 0, rgba(231, 155, 56, 0.14), transparent 60%);
+      opacity: 0;
+      transition: opacity var(--transition-med);
+    }
+
+    .offering-tag {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: rgba(38, 38, 41, 0.65);
+    }
+
+    .offering-title {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .offering-body {
+      font-size: 0.86rem;
+      color: var(--charcoal-soft);
+    }
+
+    .offering-meta {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      color: rgba(38, 38, 41, 0.65);
+    }
+
+    .offering-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 12px;
+      background: rgba(231, 155, 56, 0.12);
+      display: grid;
+      place-items: center;
+      color: var(--maroon);
+      transform: scale(1);
+      transition: transform var(--transition-med), background var(--transition-med), box-shadow var(--transition-med);
+      box-shadow: 0 6px 10px rgba(231, 155, 56, 0.25);
+    }
+
+    .offering-card:hover {
+      transform: translateY(-4px) scale(1.01);
+      box-shadow: var(--shadow-card);
+      border-color: rgba(122, 36, 48, 0.4);
+      background: linear-gradient(140deg, rgba(246, 239, 229, 0.94), rgba(255, 255, 255, 0.98));
+    }
+
+    .offering-card:hover::before {
+      opacity: 1;
+    }
+
+    .offering-card:hover .offering-icon {
+      transform: scale(1.07);
+      background: rgba(122, 36, 48, 0.14);
+      box-shadow: 0 10px 16px rgba(122, 36, 48, 0.36);
+    }
+
+    /* -------------------------
+       OUR APPROACH
+    -------------------------- */
+    .approach-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1.4rem;
+    }
+
+    @media (min-width: 860px) {
+      .approach-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .approach-card {
+      border-radius: var(--radius-md);
+      padding: 1.4rem 1.25rem;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(38, 38, 41, 0.06);
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.08);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      transition: transform var(--transition-med), box-shadow var(--transition-med), border-color var(--transition-med), background var(--transition-med);
+    }
+
+    .approach-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at 0 0, rgba(231, 155, 56, 0.13), transparent 65%);
+      opacity: 0;
+      transition: opacity var(--transition-med);
+    }
+
+    .approach-badge {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: rgba(38, 38, 41, 0.7);
+    }
+
+    .approach-title {
+      font-size: 1.02rem;
+      font-weight: 600;
+    }
+
+    .approach-body {
+      font-size: 0.9rem;
+      color: var(--charcoal-soft);
+    }
+
+    .approach-divider {
+      width: 32px;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--saffron), var(--maroon));
+      margin: 0.1rem 0 0.7rem;
+    }
+
+    .approach-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-card);
+      border-color: rgba(231, 155, 56, 0.35);
+      background: linear-gradient(145deg, rgba(246, 239, 229, 0.96), rgba(255, 255, 255, 0.98));
+    }
+
+    .approach-card:hover::before {
+      opacity: 1;
+    }
+
+    /* -------------------------
+       EXPERIENCE & CREDENTIALS
+    -------------------------- */
+    .experience-banner {
+      border-radius: var(--radius-lg);
+      background: radial-gradient(circle at 0 0, rgba(231, 155, 56, 0.12), rgba(38, 38, 41, 0.9));
+      color: #fef6eb;
+      padding: 1.9rem 1.7rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1.8rem;
+      align-items: center;
+      box-shadow: var(--shadow-soft);
+    }
+
+    @media (min-width: 860px) {
+      .experience-banner {
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+        padding: 2.1rem 2rem;
+      }
+    }
+
+    .experience-main {
+      font-size: 0.96rem;
+    }
+
+    .experience-main h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.55rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .experience-main p {
+      margin-bottom: 0;
+      color: rgba(255, 253, 246, 0.87);
+    }
+
+    .experience-badges {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.9rem;
+      font-size: 0.85rem;
+    }
+
+    .badge-card {
+      border-radius: 999px;
+      padding: 0.7rem 0.95rem;
+      background: rgba(15, 15, 16, 0.86);
+      border: 1px solid rgba(251, 243, 230, 0.24);
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+      transition: transform var(--transition-med), background var(--transition-med), box-shadow var(--transition-med), border-color var(--transition-med);
+      cursor: default;
+    }
+
+    .badge-label {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.68rem;
+      color: rgba(255, 253, 246, 0.7);
+    }
+
+    .badge-value {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #fff7eb;
+    }
+
+    .badge-card:hover {
+      transform: translateY(-3px);
+      background: rgba(251, 243, 230, 0.08);
+      border-color: rgba(231, 155, 56, 0.75);
+      box-shadow: 0 16px 30px rgba(0, 0, 0, 0.45);
+    }
+
+    /* -------------------------
+       TESTIMONIALS
+    -------------------------- */
+    .testimonials-section {
+      background: radial-gradient(circle at top, rgba(122, 36, 48, 0.09), rgba(246, 239, 229, 1));
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1.4rem;
+    }
+
+    @media (min-width: 860px) {
+      .testimonials-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .testimonial-card {
+      border-radius: var(--radius-md);
+      padding: 1.5rem 1.35rem 1.55rem;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(231, 155, 56, 0.22);
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform var(--transition-med), box-shadow var(--transition-med), border-color var(--transition-med), background var(--transition-med);
+    }
+
+    .testimonial-card::before {
+      content: "“";
+      position: absolute;
+      top: -26px;
+      right: 14px;
+      font-size: 6rem;
+      color: rgba(231, 155, 56, 0.12);
+      pointer-events: none;
+    }
+
+    .testimonial-body {
+      font-size: 0.9rem;
+      color: var(--charcoal-soft);
+    }
+
+    .testimonial-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.84rem;
+      color: rgba(38, 38, 41, 0.7);
+      margin-top: 0.4rem;
+    }
+
+    .testimonial-role {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-card);
+      border-color: rgba(122, 36, 48, 0.35);
+      background: linear-gradient(140deg, rgba(246, 239, 229, 0.98), rgba(255, 255, 255, 0.98));
+    }
+
+    /* -------------------------
+       CTA BAND
+    -------------------------- */
+    .cta-band {
+      padding: 3.8rem 0 3.9rem;
+      background: radial-gradient(circle at 50% -40%, rgba(231, 155, 56, 0.5), rgba(122, 36, 48, 0.9));
+      color: #fff7eb;
+      text-align: center;
+    }
+
+    .cta-inner {
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    .cta-title {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .cta-body {
+      font-size: 0.96rem;
+      margin-bottom: 1.8rem;
+      color: rgba(255, 253, 246, 0.9);
+    }
+
+    .cta-sub {
+      margin-top: 1rem;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: rgba(255, 253, 246, 0.7);
+    }
+
+    /* -------------------------
+       CONTACT
+    -------------------------- */
+    .contact-section {
+      background: var(--bg-soft);
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 2.6rem;
+    }
+
+    @media (min-width: 860px) {
+      .contact-layout {
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+        gap: 3.2rem;
+      }
+    }
+
+    .contact-form-card {
+      border-radius: var(--radius-lg);
+      padding: 1.9rem 1.6rem;
+      background: rgba(255, 255, 255, 0.98);
+      border: 1px solid rgba(231, 155, 56, 0.28);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .contact-form-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1rem;
+    }
+
+    @media (min-width: 640px) {
+      .contact-form-grid--two {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+      }
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      font-size: 0.85rem;
+    }
+
+    .field-label {
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(38, 38, 41, 0.8);
+    }
+
+    .field-label span {
+      margin-left: 0.1rem;
+      color: var(--maroon);
+    }
+
+    .field-input,
+    .field-textarea {
+      border-radius: 999px;
+      border: 1px solid rgba(38, 38, 41, 0.14);
+      padding: 0.75rem 0.9rem;
+      font-size: 0.9rem;
+      font-family: inherit;
+      background: rgba(250, 246, 240, 0.9);
+      transition: border-color var(--transition-med), box-shadow var(--transition-med), background var(--transition-med), transform var(--transition-med);
+    }
+
+    .field-textarea {
+      border-radius: 18px;
+      min-height: 120px;
+      resize: vertical;
+      line-height: 1.5;
+    }
+
+    .field-input:focus-visible,
+    .field-textarea:focus-visible {
+      border-color: rgba(231, 155, 56, 0.9);
+      background: #fffdf9;
+      box-shadow: 0 0 0 1px rgba(231, 155, 56, 0.75), 0 16px 30px rgba(0, 0, 0, 0.18);
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .contact-hint {
+      font-size: 0.78rem;
+      color: rgba(38, 38, 41, 0.65);
+      margin-top: 0.4rem;
+    }
+
+    .contact-details {
+      font-size: 0.9rem;
+      color: var(--charcoal-soft);
+    }
+
+    .contact-block {
+      margin-bottom: 1.4rem;
+    }
+
+    .contact-label {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.78rem;
+      color: rgba(38, 38, 41, 0.72);
+      margin-bottom: 0.25rem;
+    }
+
+    .contact-value {
+      font-size: 0.96rem;
+      font-weight: 500;
+    }
+
+    .contact-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      border-radius: var(--radius-pill);
+      padding: 0.6rem 1rem;
+      margin-top: 0.4rem;
+      background: rgba(231, 155, 56, 0.12);
+      border: 1px dashed rgba(231, 155, 56, 0.8);
+      font-size: 0.86rem;
+    }
+
+    .contact-whatsapp-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #25d366, #128c7e);
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-size: 0.9rem;
+    }
+
+    .contact-note {
+      font-size: 0.8rem;
+      color: rgba(38, 38, 41, 0.7);
+      margin-top: 1rem;
+    }
+
+    /* -------------------------
+       FOOTER
+    -------------------------- */
+    .site-footer {
+      padding: 1.9rem 0 2.1rem;
+      background: linear-gradient(180deg, #f6efe5 0, #f2e4d5 100%);
+      border-top: 1px solid rgba(231, 155, 56, 0.24);
+      font-size: 0.8rem;
+      color: rgba(38, 38, 41, 0.7);
+    }
+
+    .footer-inner {
+      max-width: var(--container-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    @media (min-width: 700px) {
+      .footer-inner {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    .footer-left span {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .footer-right {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .footer-pill {
+      border-radius: 999px;
+      padding: 0.35rem 0.85rem;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(231, 155, 56, 0.42);
+    }
+
+    /* -------------------------
+       KEYFRAMES
+    -------------------------- */
+    @keyframes heroFloat {
+      0% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-6px) scale(1.03); }
+      100% { transform: translateY(0) scale(1); }
+    }
+
+    @keyframes scrollPulse {
+      0% { transform: scaleY(0.4); opacity: 0.4; }
+      50% { transform: scaleY(1); opacity: 1; }
+      100% { transform: scaleY(0.4); opacity: 0.35; }
+    }
+
+    /* -------------------------
+       SMALL SCREEN TWEAKS
+    -------------------------- */
+    @media (max-width: 480px) {
+      .hero-ctas {
+        align-items: stretch;
+      }
+      .btn-primary {
+        width: 100%;
+      }
+      .btn-secondary-link {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page-shell">
+  <!-- =======================
+       STICKY HEADER
+       (language toggle only visual, no locale switch)
+  ======================== -->
+  <header class="site-header">
+    <div class="nav-inner" aria-label="Main navigation">
+      <div class="brand-mark">
+        <!-- Replace circle with actual logo <img> if available -->
+        <div class="brand-logo-circle" aria-hidden="true"></div>
+        <div class="brand-text">
+          <span>Yoga Studio</span>
+          <span class="heading-serif">Kriya Yoga Center</span>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#practices">Practices</a>
+        <a href="#approach">Approach</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="lang-toggle" aria-label="Language selection">
+        <!-- In production, wire these to actual i18n if needed -->
+        <button type="button" data-active="true" aria-pressed="true">EN</button>
+        <button type="button" data-active="false" aria-pressed="false">VI</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- =======================
+       HERO
+  ======================== -->
+  <main>
+    <section class="hero" id="top">
+      <div class="container">
+        <div class="hero-inner fade-section">
+          <div class="hero-logo" aria-hidden="true">
+            <div class="hero-logo-inner heading-serif">
+              Kriya
+            </div>
+          </div>
+          <!-- Assume a proper logo image can replace the circle above -->
+
+          <div class="hero-subtitle">
+            Traditional Yoga in Ho Chi Minh City
+          </div>
+          <h1 class="heading-serif">Kriya Yoga Center</h1>
+          <p class="hero-tagline">where soul meets the One</p>
+
+          <div class="hero-meta">
+            <div class="meta-pill">
+              <span class="meta-dot"></span>
+              Trauma &amp; emotional healing
+            </div>
+            <div class="meta-pill">
+              <span class="meta-dot"></span>
+              District 6 · Ho Chi Minh City
+            </div>
+          </div>
+
+          <div class="hero-ctas">
+            <!-- Replace href with real WhatsApp link -->
+            <a href="https://wa.me/0000000000" class="btn-primary">
+              <span class="icon" aria-hidden="true">✶</span>
+              <span>Message on WhatsApp</span>
+            </a>
+            <a href="#contact" class="btn-secondary-link">
+              <span>Book a quiet visit</span>
+              <span aria-hidden="true">↳</span>
+            </a>
+          </div>
+
+          <div class="scroll-hint">
+            <span>Scroll to soften</span>
+            <span class="scroll-line"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================
+         ABOUT
+    ======================== -->
+    <section id="about">
+      <div class="container fade-section">
+        <div class="section-header">
+          <div class="eyebrow">About the center</div>
+          <h2 class="heading-serif">A sanctuary in the city</h2>
+          <p>
+            Kriya Yoga Center weaves traditional yoga teachings with contemporary healing, offering a grounded space to breathe, feel, and return to what is whole within.
+          </p>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="about-layout">
+          <div class="about-body">
+            <p>
+              In the heart of Ho Chi Minh City, this studio holds quiet, candlelit rooms where nervous systems can exhale, bodies can soften, and minds are invited into stillness beyond daily noise.
+            </p>
+            <p>
+              Sessions are intentionally crafted for trauma and emotional healing, blending somatic awareness, breath-led practice, and classical yogic techniques that honor each student’s pace.
+            </p>
+            <p>
+              Whether you are new to yoga or deepening a long-term practice, the center offers a premium yet intimate experience rooted in lineage, humility, and everyday integration rather than performance.
+            </p>
+            <div class="about-pill-row">
+              <div class="about-pill">
+                <span class="about-pill-dot"></span>
+                Nervous system regulation
+              </div>
+              <div class="about-pill">
+                <span class="about-pill-dot"></span>
+                Gentle trauma-informed teaching
+              </div>
+              <div class="about-pill">
+                <span class="about-pill-dot"></span>
+                Breath, mantra &amp; meditation
+              </div>
+              <div class="about-pill">
+                <span class="about-pill-dot"></span>
+                Small, spacious classes
+              </div>
+            </div>
+          </div>
+
+          <aside class="about-aside" aria-label="Studio highlights">
+            <div class="about-aside-content">
+              <div class="about-aside-title">What students often say</div>
+              <ul class="about-aside-list">
+                <li>
+                  <span class="about-aside-icon" aria-hidden="true">◎</span>
+                  <span>“It feels like a quiet ashram hidden inside the city.”</span>
+                </li>
+                <li>
+                  <span class="about-aside-icon" aria-hidden="true">✺</span>
+                  <span>“My body feels both strong and deeply safe here.”</span>
+                </li>
+                <li>
+                  <span class="about-aside-icon" aria-hidden="true">⌘</span>
+                  <span>“Classes hold my emotions without forcing anything.”</span>
+                </li>
+                <li>
+                  <span class="about-aside-icon" aria-hidden="true">✧</span>
+                  <span>“It is premium, yet soft, simple, and honest.”</span>
+                </li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================
+         PRACTICES / OFFERINGS
+    ======================== -->
+    <section id="practices">
+      <div class="container fade-section">
+        <div class="section-header">
+          <div class="eyebrow">Practices &amp; offerings</div>
+          <h2 class="heading-serif">Paths into stillness</h2>
+          <p>
+            Explore structured classes and gentle tools, from foundational postures to subtle energetic work, designed to meet you exactly where your body and heart are today.
+          </p>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="offerings-grid" aria-label="Yoga practices">
+          <!-- Each card uses placeholder body; adjust to real copy as needed -->
+          <article class="offering-card">
+            <div class="offering-tag">Steady foundations</div>
+            <div class="offering-title heading-serif">Hatha Yoga</div>
+            <p class="offering-body">
+              Slow, spacious postural practice with refined alignment, ideal for grounding the body and calming overstimulated minds after a full day in the city.
+            </p>
+            <div class="offering-meta">
+              <span>Gentle–moderate intensity</span>
+              <div class="offering-icon" aria-hidden="true">☉</div>
+            </div>
+          </article>
+
+          <article class="offering-card">
+            <div class="offering-tag">Inner current</div>
+            <div class="offering-title heading-serif">Kriya Yoga</div>
+            <p class="offering-body">
+              Classical breath, bandha, and concentration techniques taught with care, supporting purification of subtle channels and deeper meditative absorption.
+            </p>
+            <div class="offering-meta">
+              <span>Guided subtle practice</span>
+              <div class="offering-icon" aria-hidden="true">△</div>
+            </div>
+          </article>
+
+          <article class="offering-card">
+            <div class="offering-tag">Fluid movement</div>
+            <div class="offering-title heading-serif">Vinyasa</div>
+            <p class="offering-body">
+              Breath-linked sequences that feel like moving meditation, balancing strength and grace without urgency or performance.
+            </p>
+            <div class="offering-meta">
+              <span>Dynamic flow</span>
+              <div class="offering-icon" aria-hidden="true">⟡</div>
+            </div>
+          </article>
+
+          <article class="offering-card">
+            <div class="offering-tag">Discipline &amp; fire</div>
+            <div class="offering-title heading-serif">Ashtanga</div>
+            <p class="offering-body">
+              Traditional sequences held in a supportive, non-competitive environment, ideal for students seeking structure and inner resilience.
+            </p>
+            <div class="offering-meta">
+              <span>Progressive series</span>
+              <div class="offering-icon" aria-hidden="true">✶</div>
+            </div>
+          </article>
+
+          <article class="offering-card">
+            <div class="offering-tag">Inner cleansing</div>
+            <div class="offering-title heading-serif">Shatkarma</div>
+            <p class="offering-body">
+              Gentle, teacher-guided purification practices offered in a safe, respectful container for students ready to explore deeper yogic hygiene.
+            </p>
+            <div class="offering-meta">
+              <span>By appointment</span>
+              <div class="offering-icon" aria-hidden="true">☲</div>
+            </div>
+          </article>
+
+          <article class="offering-card">
+            <div class="offering-tag">Quiet center</div>
+            <div class="offering-title heading-serif">Meditation</div>
+            <p class="offering-body">
+              Seated guidance using breath, mantra, and simple awareness, supporting emotional regulation and a felt sense of inner spaciousness.
+            </p>
+            <div class="offering-meta">
+              <span>All levels</span>
+              <div class="offering-icon" aria-hidden="true">◦</div>
+            </div>
+          </article>
+
+          <article class="offering-card">
+            <div class="offering-tag">Heart opening</div>
+            <div class="offering-title heading-serif">Wheel Yoga</div>
+            <p class="offering-body">
+              Supported backbends and playful arcs using the yoga wheel, helping release stored tension across the chest, shoulders, and spine.
+            </p>
+            <div class="offering-meta">
+              <span>Props-based</span>
+              <div class="offering-icon" aria-hidden="true">⭓</div>
+            </div>
+          </article>
+
+          <article class="offering-card">
+            <div class="offering-tag">Deep release</div>
+            <div class="offering-title heading-serif">Ball Yoga</div>
+            <p class="offering-body">
+              Targeted myofascial work with soft balls and mindful breath to unwind chronic holding, especially around hips, jaw, and lower back.
+            </p>
+            <div class="offering-meta">
+              <span>Restorative focus</span>
+              <div class="offering-icon" aria-hidden="true">●</div>
+            </div>
+          </article>
+
+          <article class="offering-card">
+            <div class="offering-tag">Weightless support</div>
+            <div class="offering-title heading-serif">Aerial Yoga</div>
+            <p class="offering-body">
+              Silk hammocks cradle the body for decompression, gentle inversions, and a playful sense of suspension that remains grounded and safe.
+            </p>
+            <div class="offering-meta">
+              <span>Small groups</span>
+              <div class="offering-icon" aria-hidden="true">∞</div>
+            </div>
+          </article>
+
+          <article class="offering-card">
+            <div class="offering-tag">Alignment tools</div>
+            <div class="offering-title heading-serif">Strap / Stick / Wall Yoga</div>
+            <p class="offering-body">
+              Intelligent use of wall, straps, and bamboo sticks to refine posture, stabilize joints, and support bodies working with injury or fatigue.
+            </p>
+            <div class="offering-meta">
+              <span>Highly adaptable</span>
+              <div class="offering-icon" aria-hidden="true">⟀</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================
+         OUR APPROACH
+    ======================== -->
+    <section id="approach">
+      <div class="container fade-section">
+        <div class="section-header">
+          <div class="eyebrow">Our approach</div>
+          <h2 class="heading-serif">Rooted, tender, contemporary</h2>
+          <p>
+            Each class is a meeting point of lineage and lived life in Saigon, honoring ancient methods while speaking gently to modern nervous systems and schedules.
+          </p>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="approach-grid">
+          <article class="approach-card">
+            <div class="approach-badge">Traditional Lineage</div>
+            <div class="approach-divider"></div>
+            <div class="approach-title heading-serif">Held by timeless teachings</div>
+            <p class="approach-body">
+              The center follows classical Kriya and Hatha frameworks, integrating mantra, mudra, and breath in a way that respects the roots of yoga rather than diluting them.
+            </p>
+            <p class="approach-body">
+              Students are encouraged to build steady, devotional practice rhythms instead of chasing novelty, allowing depth to unfold over time.
+            </p>
+          </article>
+
+          <article class="approach-card">
+            <div class="approach-badge">Trauma &amp; Emotional Healing</div>
+            <div class="approach-divider"></div>
+            <div class="approach-title heading-serif">Spaces where feelings can land</div>
+            <p class="approach-body">
+              Classes are consent-based, cueing choice, pacing, and interoception so the body can safely release, rather than re-create, overwhelm.
+            </p>
+            <p class="approach-body">
+              Gentle somatic language and restorative shapes help soften armor, making room for grief, tenderness, and joy without pressure.
+            </p>
+          </article>
+
+          <article class="approach-card">
+            <div class="approach-badge">Modern Lifestyle Integration</div>
+            <div class="approach-divider"></div>
+            <div class="approach-title heading-serif">Yoga that fits real lives</div>
+            <p class="approach-body">
+              Schedules are designed around work and family rhythms in Ho Chi Minh City, with early mornings, lunch resets, and quiet evening practices.
+            </p>
+            <p class="approach-body">
+              Students leave with simple tools—breathing, micro-movements, short meditations—that can be carried into commutes, offices, and homes.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================
+         EXPERIENCE & CREDENTIALS
+    ======================== -->
+    <section id="experience">
+      <div class="container fade-section">
+        <div class="section-header">
+          <div class="eyebrow">Experience &amp; credentials</div>
+          <h2 class="heading-serif">Trust the holding</h2>
+          <p>
+            Behind every quiet class is a team shaped by years of study, international teaching, and the humility that comes from their own healing journeys.
+          </p>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="experience-banner">
+          <div class="experience-main">
+            <h3 class="heading-serif">Depth of practice</h3>
+            <p>
+              Teachers draw from long-term sadhana, therapeutic training, and mentorship with senior yogis, bringing both technical clarity and heartfelt presence into each room.
+            </p>
+          </div>
+          <div class="experience-badges" aria-label="Center credentials">
+            <div class="badge-card">
+              <span class="badge-label">Years of experience</span>
+              <span class="badge-value">15+ years of combined teaching</span>
+            </div>
+            <div class="badge-card">
+              <span class="badge-label">Certifications</span>
+              <span class="badge-value">Placeholder for RYT / lineage details</span>
+            </div>
+            <div class="badge-card">
+              <span class="badge-label">International students</span>
+              <span class="badge-value">Students from 10+ countries welcomed</span>
+            </div>
+            <div class="badge-card">
+              <span class="badge-label">Google reviews</span>
+              <span class="badge-value">Placeholder for rating &amp; review count</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================
+         TESTIMONIALS
+    ======================== -->
+    <section id="testimonials" class="testimonials-section">
+      <div class="container fade-section">
+        <div class="section-header">
+          <div class="eyebrow">Student words</div>
+          <h2 class="heading-serif">Calm, held, seen</h2>
+          <p>
+            Testimonials here are placeholders, yet they mirror the kind of quiet, sincere feedback often shared when practice becomes a soft homecoming.
+          </p>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="testimonials-grid">
+          <article class="testimonial-card">
+            <p class="testimonial-body">
+              “I came for stretching and left with a softer relationship to my own heart. Nothing is forced here—the teachers invite, they do not push.”
+            </p>
+            <div class="testimonial-footer">
+              <div>
+                <div><strong>Placeholder name</strong></div>
+                <div class="testimonial-role">Evening student</div>
+              </div>
+              <div>Ho Chi Minh City</div>
+            </div>
+          </article>
+
+          <article class="testimonial-card">
+            <p class="testimonial-body">
+              “As someone healing from burnout, I never felt rushed. Each class gives my nervous system permission to slow down and actually rest.”
+            </p>
+            <div class="testimonial-footer">
+              <div>
+                <div><strong>Placeholder name</strong></div>
+                <div class="testimonial-role">Trauma-informed track</div>
+              </div>
+              <div>International guest</div>
+            </div>
+          </article>
+
+          <article class="testimonial-card">
+            <p class="testimonial-body">
+              “The space feels premium, yet humble. It is beautiful without being loud, and that quiet beauty supports the practice itself.”
+            </p>
+            <div class="testimonial-footer">
+              <div>
+                <div><strong>Placeholder name</strong></div>
+                <div class="testimonial-role">Weekend practitioner</div>
+              </div>
+              <div>District 6</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================
+         CTA BAND
+    ======================== -->
+    <section class="cta-band">
+      <div class="container">
+        <div class="cta-inner fade-section">
+          <div class="eyebrow">A gentle invitation</div>
+          <h2 class="cta-title heading-serif">Begin where you are</h2>
+          <p class="cta-body">
+            You do not have to be flexible, calm, or “ready” to start. Bring your tired body, your busy mind, your tender heart—everything is welcome on the mat.
+          </p>
+          <a href="https://wa.me/0000000000" class="btn-primary">
+            <span class="icon" aria-hidden="true">✶</span>
+            <span>Open WhatsApp &amp; say hello</span>
+          </a>
+          <div class="cta-sub">
+            One quiet message can open an entirely new way of being with yourself.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================
+         CONTACT
+    ======================== -->
+    <section id="contact" class="contact-section">
+      <div class="container fade-section">
+        <div class="section-header">
+          <div class="eyebrow">Contact &amp; visits</div>
+          <h2 class="heading-serif">Step into the space</h2>
+          <p>
+            For class inquiries, private sessions, or healing-oriented journeys, share a short note below and someone from the team will respond quietly and clearly.
+          </p>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="contact-layout">
+          <!-- Netlify-ready static form -->
+          <div class="contact-form-card">
+            <!-- 
+              Netlify notes:
+              - data-netlify="true" or netlify attribute makes this form auto-handled at build time [web:31][web:38]
+              - "name" attribute is used as form identifier in dashboard [web:35][web:38]
+            -->
+            <form name="kriya-contact" method="POST" data-netlify="true">
+              <!-- Netlify honeypot (optional but recommended) -->
+              <input type="hidden" name="form-name" value="kriya-contact" />
+              <p style="display:none;">
+                <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+              </p>
+
+              <div class="contact-form-grid contact-form-grid--two">
+                <div class="field-group">
+                  <label class="field-label" for="name">Name<span>*</span></label>
+                  <input id="name" name="name" type="text" class="field-input" required />
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="email">Email<span>*</span></label>
+                  <input id="email" name="email" type="email" class="field-input" required />
+                </div>
+              </div>
+
+              <div class="contact-form-grid" style="margin-top:1rem;">
+                <div class="field-group">
+                  <label class="field-label" for="phone">WhatsApp number</label>
+                  <input id="phone" name="phone" type="tel" class="field-input" />
+                  <div class="contact-hint">
+                    Include country code so the studio can message you directly.
+                  </div>
+                </div>
+              </div>
+
+              <div class="contact-form-grid" style="margin-top:1rem;">
+                <div class="field-group">
+                  <label class="field-label" for="interest">What are you seeking?</label>
+                  <input
+                    id="interest"
+                    name="interest"
+                    type="text"
+                    class="field-input"
+                    placeholder="e.g. gentle trauma healing, Kriya initiation, private sessions"
+                  />
+                </div>
+              </div>
+
+              <div class="contact-form-grid" style="margin-top:1rem;">
+                <div class="field-group">
+                  <label class="field-label" for="message">Your note<span>*</span></label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    class="field-textarea"
+                    required
+                    placeholder="Share anything you feel is important to name before you arrive."
+                  ></textarea>
+                </div>
+              </div>
+
+              <div style="margin-top:1.4rem; display:flex; flex-wrap:wrap; gap:0.8rem; align-items:center;">
+                <button type="submit" class="btn-primary">
+                  <span class="icon" aria-hidden="true">✶</span>
+                  <span>Send message to the center</span>
+                </button>
+                <span class="contact-hint">
+                  You will receive a gentle reply within 24 hours on weekdays.
+                </span>
+              </div>
+            </form>
+          </div>
+
+          <!-- Contact details -->
+          <div class="contact-details">
+            <div class="contact-block">
+              <div class="contact-label">Studio address</div>
+              <div class="contact-value">District 6, Ho Chi Minh City</div>
+              <p>
+                Exact directions and entry details are shared after registration to protect the quiet of the space and neighboring community.
+              </p>
+            </div>
+
+            <div class="contact-block">
+              <div class="contact-label">WhatsApp</div>
+              <div class="contact-whatsapp">
+                <span class="contact-whatsapp-icon" aria-hidden="true">◎</span>
+                <span>+84 (placeholder) · Tap “Message on WhatsApp” above</span>
+              </div>
+            </div>
+
+            <div class="contact-block">
+              <div class="contact-label">Class rhythm</div>
+              <p>
+                Morning: soft awakening and grounding practice.<br />
+                Evening: unwinding flows, restorative shapes, and guided meditation.
+              </p>
+            </div>
+
+            <p class="contact-note">
+              If you are currently under psychiatric care or navigating acute trauma, please mention this in your note so that the team can respond with appropriate referrals and pacing.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =======================
+       FOOTER
+  ======================== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <span>Kriya Yoga Center</span> · District 6 · Ho Chi Minh City
+      </div>
+      <div class="footer-right">
+        <div class="footer-pill">Traditional yoga &amp; modern healing</div>
+        <div class="footer-pill">One quiet breath at a time</div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- =======================
+     MICRO JS (no libraries)
+     - fade-in on scroll using IntersectionObserver
+======================== -->
+<script>
+  (function () {
+    var observed = document.querySelectorAll('.fade-section');
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.16 });
+      observed.forEach(function (el) { io.observe(el); });
+    } else {
+      // Fallback: show all if IntersectionObserver not supported
+      observed.forEach(function (el) { el.classList.add('is-visible'); });
+    }
+
+    // Simple visual-only language toggle state (no i18n wiring here)
+    var langButtons = document.querySelectorAll('.lang-toggle button');
+    langButtons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        langButtons.forEach(function (b) {
+          b.dataset.active = 'false';
+          b.setAttribute('aria-pressed', 'false');
+        });
+        btn.dataset.active = 'true';
+        btn.setAttribute('aria-pressed', 'true');
+      });
+    });
+  })();
+</script>
+</body>
+</html>
