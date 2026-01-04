@@ -36,13 +36,8 @@
       --container-width: 1120px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
@@ -53,23 +48,12 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button {
-      font-family: inherit;
-    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; }
 
     /* -------------------------
        TYPOGRAPHY
-       (Use <link> to real webfonts in production if desired)
     -------------------------- */
     .heading-serif {
       font-family: "Georgia", "Times New Roman", serif;
@@ -94,10 +78,7 @@
       letter-spacing: 0.18em;
     }
 
-    p {
-      margin: 0 0 1em;
-      font-size: 0.98rem;
-    }
+    p { margin: 0 0 1em; font-size: 0.98rem; }
 
     .eyebrow {
       text-transform: uppercase;
@@ -109,11 +90,7 @@
     /* -------------------------
        LAYOUT HELPERS
     -------------------------- */
-    .page-shell {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+    .page-shell { min-height: 100vh; display: flex; flex-direction: column; }
 
     .container {
       width: 100%;
@@ -122,15 +99,10 @@
       margin: 0 auto;
     }
 
-    section {
-      padding: 4.5rem 0 4.75rem;
-      position: relative;
-    }
+    section { padding: 4.5rem 0 4.75rem; position: relative; }
 
     @media (min-width: 900px) {
-      section {
-        padding: 5.5rem 0 5.75rem;
-      }
+      section { padding: 5.5rem 0 5.75rem; }
     }
 
     .section-header {
@@ -139,10 +111,7 @@
       text-align: center;
     }
 
-    .section-header p {
-      margin-top: 0.6rem;
-      color: var(--charcoal-soft);
-    }
+    .section-header p { margin-top: 0.6rem; color: var(--charcoal-soft); }
 
     .section-divider {
       width: 52px;
@@ -159,16 +128,9 @@
       transition: opacity var(--transition-med), transform var(--transition-med);
     }
 
-    .fade-section.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .fade-section.is-visible { opacity: 1; transform: translateY(0); }
 
-    /* Focus-visible outline */
-    :focus-visible {
-      outline: 2px solid var(--saffron);
-      outline-offset: 3px;
-    }
+    :focus-visible { outline: 2px solid var(--saffron); outline-offset: 3px; }
 
     /* -------------------------
        HEADER / NAV
@@ -192,11 +154,7 @@
       gap: 1.25rem;
     }
 
-    .brand-mark {
-      display: flex;
-      align-items: center;
-      gap: 0.55rem;
-    }
+    .brand-mark { display: flex; align-items: center; gap: 0.55rem; }
 
     .brand-logo-circle {
       width: 32px;
@@ -216,10 +174,7 @@
       border: 2px solid rgba(246, 239, 229, 0.85);
     }
 
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-    }
+    .brand-text { display: flex; flex-direction: column; }
 
     .brand-text span:first-child {
       font-size: 0.78rem;
@@ -228,10 +183,7 @@
       color: var(--charcoal-soft);
     }
 
-    .brand-text span:last-child {
-      font-size: 0.84rem;
-      font-weight: 600;
-    }
+    .brand-text span:last-child { font-size: 0.84rem; font-weight: 600; }
 
     .nav-links {
       display: none;
@@ -242,10 +194,7 @@
       letter-spacing: 0.16em;
     }
 
-    .nav-links a {
-      position: relative;
-      padding-bottom: 0.15rem;
-    }
+    .nav-links a { position: relative; padding-bottom: 0.15rem; }
 
     .nav-links a::after {
       content: "";
@@ -258,14 +207,10 @@
       transition: width var(--transition-fast);
     }
 
-    .nav-links a:hover::after {
-      width: 100%;
-    }
+    .nav-links a:hover::after { width: 100%; }
 
     @media (min-width: 860px) {
-      .nav-links {
-        display: flex;
-      }
+      .nav-links { display: flex; }
     }
 
     .lang-toggle {
@@ -311,9 +256,7 @@
     }
 
     @media (min-width: 900px) {
-      .hero {
-        padding: 6rem 0 5.5rem;
-      }
+      .hero { padding: 6rem 0 5.5rem; }
     }
 
     .hero::before,
@@ -327,13 +270,8 @@
       pointer-events: none;
     }
 
-    .hero::before {
-      inset: 8% 12% auto;
-    }
-
-    .hero::after {
-      inset: auto 18% 6%;
-    }
+    .hero::before { inset: 8% 12% auto; }
+    .hero::after { inset: auto 18% 6%; }
 
     .hero-inner {
       max-width: 720px;
@@ -397,10 +335,7 @@
     }
 
     @media (min-width: 700px) {
-      .hero-meta {
-        flex-direction: row;
-        justify-content: center;
-      }
+      .hero-meta { flex-direction: row; justify-content: center; }
     }
 
     .meta-pill {
@@ -414,12 +349,7 @@
       white-space: nowrap;
     }
 
-    .meta-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--maroon);
-    }
+    .meta-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--maroon); }
 
     .hero-ctas {
       display: flex;
@@ -429,10 +359,7 @@
     }
 
     @media (min-width: 600px) {
-      .hero-ctas {
-        flex-direction: row;
-        justify-content: center;
-      }
+      .hero-ctas { flex-direction: row; justify-content: center; }
     }
 
     .btn-primary {
@@ -455,9 +382,7 @@
       background-position: 0% 40%;
     }
 
-    .btn-primary span.icon {
-      font-size: 1.1rem;
-    }
+    .btn-primary span.icon { font-size: 1.1rem; }
 
     .btn-primary:hover {
       transform: translateY(-1px) scale(1.01);
@@ -495,10 +420,7 @@
       transition: transform var(--transition-fast), opacity var(--transition-fast);
     }
 
-    .btn-secondary-link:hover::after {
-      transform: scaleX(1);
-      opacity: 1;
-    }
+    .btn-secondary-link:hover::after { transform: scaleX(1); opacity: 1; }
 
     .scroll-hint {
       margin-top: 3rem;
@@ -582,17 +504,15 @@
       content: "";
       position: absolute;
       inset: -40%;
-      background-image: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.6) 0, transparent 52%),
+      background-image:
+        radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.6) 0, transparent 52%),
         radial-gradient(circle at 100% 100%, rgba(255, 255, 255, 0.4) 0, transparent 55%);
       mix-blend-mode: soft-light;
       opacity: 0.75;
       pointer-events: none;
     }
 
-    .about-aside-content {
-      position: relative;
-      z-index: 1;
-    }
+    .about-aside-content { position: relative; z-index: 1; }
 
     .about-aside-title {
       font-size: 0.9rem;
@@ -611,11 +531,7 @@
       font-size: 0.86rem;
     }
 
-    .about-aside-list li {
-      display: flex;
-      align-items: center;
-      gap: 0.45rem;
-    }
+    .about-aside-list li { display: flex; align-items: center; gap: 0.45rem; }
 
     .about-aside-icon {
       width: 18px;
@@ -638,15 +554,11 @@
     }
 
     @media (min-width: 640px) {
-      .offerings-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+      .offerings-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
     @media (min-width: 992px) {
-      .offerings-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
+      .offerings-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     }
 
     .offering-card {
@@ -680,15 +592,8 @@
       color: rgba(38, 38, 41, 0.65);
     }
 
-    .offering-title {
-      font-size: 1rem;
-      font-weight: 600;
-    }
-
-    .offering-body {
-      font-size: 0.86rem;
-      color: var(--charcoal-soft);
-    }
+    .offering-title { font-size: 1rem; font-weight: 600; }
+    .offering-body { font-size: 0.86rem; color: var(--charcoal-soft); }
 
     .offering-meta {
       margin-top: auto;
@@ -719,9 +624,7 @@
       background: linear-gradient(140deg, rgba(246, 239, 229, 0.94), rgba(255, 255, 255, 0.98));
     }
 
-    .offering-card:hover::before {
-      opacity: 1;
-    }
+    .offering-card:hover::before { opacity: 1; }
 
     .offering-card:hover .offering-icon {
       transform: scale(1.07);
@@ -739,9 +642,7 @@
     }
 
     @media (min-width: 860px) {
-      .approach-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
+      .approach-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     }
 
     .approach-card {
@@ -774,15 +675,8 @@
       color: rgba(38, 38, 41, 0.7);
     }
 
-    .approach-title {
-      font-size: 1.02rem;
-      font-weight: 600;
-    }
-
-    .approach-body {
-      font-size: 0.9rem;
-      color: var(--charcoal-soft);
-    }
+    .approach-title { font-size: 1.02rem; font-weight: 600; }
+    .approach-body { font-size: 0.9rem; color: var(--charcoal-soft); }
 
     .approach-divider {
       width: 32px;
@@ -799,9 +693,7 @@
       background: linear-gradient(145deg, rgba(246, 239, 229, 0.96), rgba(255, 255, 255, 0.98));
     }
 
-    .approach-card:hover::before {
-      opacity: 1;
-    }
+    .approach-card:hover::before { opacity: 1; }
 
     /* -------------------------
        EXPERIENCE & CREDENTIALS
@@ -825,9 +717,7 @@
       }
     }
 
-    .experience-main {
-      font-size: 0.96rem;
-    }
+    .experience-main { font-size: 0.96rem; }
 
     .experience-main h3 {
       font-size: 1.1rem;
@@ -836,10 +726,7 @@
       text-transform: uppercase;
     }
 
-    .experience-main p {
-      margin-bottom: 0;
-      color: rgba(255, 253, 246, 0.87);
-    }
+    .experience-main p { margin-bottom: 0; color: rgba(255, 253, 246, 0.87); }
 
     .experience-badges {
       display: grid;
@@ -867,11 +754,7 @@
       color: rgba(255, 253, 246, 0.7);
     }
 
-    .badge-value {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: #fff7eb;
-    }
+    .badge-value { font-size: 0.9rem; font-weight: 600; color: #fff7eb; }
 
     .badge-card:hover {
       transform: translateY(-3px);
@@ -894,9 +777,7 @@
     }
 
     @media (min-width: 860px) {
-      .testimonials-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
+      .testimonials-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     }
 
     .testimonial-card {
@@ -923,10 +804,7 @@
       pointer-events: none;
     }
 
-    .testimonial-body {
-      font-size: 0.9rem;
-      color: var(--charcoal-soft);
-    }
+    .testimonial-body { font-size: 0.9rem; color: var(--charcoal-soft); }
 
     .testimonial-footer {
       display: flex;
@@ -960,10 +838,7 @@
       text-align: center;
     }
 
-    .cta-inner {
-      max-width: 620px;
-      margin: 0 auto;
-    }
+    .cta-inner { max-width: 620px; margin: 0 auto; }
 
     .cta-title {
       font-size: 1.4rem;
@@ -989,9 +864,7 @@
     /* -------------------------
        CONTACT
     -------------------------- */
-    .contact-section {
-      background: var(--bg-soft);
-    }
+    .contact-section { background: var(--bg-soft); }
 
     .contact-layout {
       display: grid;
@@ -1041,10 +914,7 @@
       color: rgba(38, 38, 41, 0.8);
     }
 
-    .field-label span {
-      margin-left: 0.1rem;
-      color: var(--maroon);
-    }
+    .field-label span { margin-left: 0.1rem; color: var(--maroon); }
 
     .field-input,
     .field-textarea {
@@ -1073,20 +943,10 @@
       outline: none;
     }
 
-    .contact-hint {
-      font-size: 0.78rem;
-      color: rgba(38, 38, 41, 0.65);
-      margin-top: 0.4rem;
-    }
+    .contact-hint { font-size: 0.78rem; color: rgba(38, 38, 41, 0.65); margin-top: 0.4rem; }
 
-    .contact-details {
-      font-size: 0.9rem;
-      color: var(--charcoal-soft);
-    }
-
-    .contact-block {
-      margin-bottom: 1.4rem;
-    }
+    .contact-details { font-size: 0.9rem; color: var(--charcoal-soft); }
+    .contact-block { margin-bottom: 1.4rem; }
 
     .contact-label {
       text-transform: uppercase;
@@ -1096,10 +956,7 @@
       margin-bottom: 0.25rem;
     }
 
-    .contact-value {
-      font-size: 0.96rem;
-      font-weight: 500;
-    }
+    .contact-value { font-size: 0.96rem; font-weight: 500; }
 
     .contact-whatsapp {
       display: inline-flex;
@@ -1124,11 +981,7 @@
       font-size: 0.9rem;
     }
 
-    .contact-note {
-      font-size: 0.8rem;
-      color: rgba(38, 38, 41, 0.7);
-      margin-top: 1rem;
-    }
+    .contact-note { font-size: 0.8rem; color: rgba(38, 38, 41, 0.7); margin-top: 1rem; }
 
     /* -------------------------
        FOOTER
@@ -1151,23 +1004,12 @@
     }
 
     @media (min-width: 700px) {
-      .footer-inner {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-      }
+      .footer-inner { flex-direction: row; align-items: center; justify-content: space-between; }
     }
 
-    .footer-left span {
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-    }
+    .footer-left span { text-transform: uppercase; letter-spacing: 0.16em; }
 
-    .footer-right {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-    }
+    .footer-right { display: flex; flex-wrap: wrap; gap: 0.8rem; }
 
     .footer-pill {
       border-radius: 999px;
@@ -1195,15 +1037,9 @@
        SMALL SCREEN TWEAKS
     -------------------------- */
     @media (max-width: 480px) {
-      .hero-ctas {
-        align-items: stretch;
-      }
-      .btn-primary {
-        width: 100%;
-      }
-      .btn-secondary-link {
-        justify-content: center;
-      }
+      .hero-ctas { align-items: stretch; }
+      .btn-primary { width: 100%; }
+      .btn-secondary-link { justify-content: center; }
     }
   </style>
 </head>
@@ -1211,12 +1047,10 @@
 <div class="page-shell">
   <!-- =======================
        STICKY HEADER
-       (language toggle only visual, no locale switch)
   ======================== -->
   <header class="site-header">
     <div class="nav-inner" aria-label="Main navigation">
       <div class="brand-mark">
-        <!-- Replace circle with actual logo <img> if available -->
         <div class="brand-logo-circle" aria-hidden="true"></div>
         <div class="brand-text">
           <span>Yoga Studio</span>
@@ -1230,10 +1064,11 @@
         <a href="#experience">Experience</a>
         <a href="#contact">Contact</a>
       </nav>
+
+      <!-- VN default; EN redirects to currentdomain/en.html -->
       <div class="lang-toggle" aria-label="Language selection">
-        <!-- In production, wire these to actual i18n if needed -->
-        <button type="button" data-active="true" aria-pressed="true">EN</button>
-        <button type="button" data-active="false" aria-pressed="false">VI</button>
+        <button type="button" data-lang="en" data-active="false" aria-pressed="false">EN</button>
+        <button type="button" data-lang="vn" data-active="true" aria-pressed="true">VN</button>
       </div>
     </div>
   </header>
@@ -1250,7 +1085,6 @@
               Kriya
             </div>
           </div>
-          <!-- Assume a proper logo image can replace the circle above -->
 
           <div class="hero-subtitle">
             Traditional Yoga in Ho Chi Minh City
@@ -1270,7 +1104,6 @@
           </div>
 
           <div class="hero-ctas">
-            <!-- Replace href with real WhatsApp link -->
             <a href="https://wa.me/0000000000" class="btn-primary">
               <span class="icon" aria-hidden="true">✶</span>
               <span>Message on WhatsApp</span>
@@ -1376,7 +1209,6 @@
         </div>
 
         <div class="offerings-grid" aria-label="Yoga practices">
-          <!-- Each card uses placeholder body; adjust to real copy as needed -->
           <article class="offering-card">
             <div class="offering-tag">Steady foundations</div>
             <div class="offering-title heading-serif">Hatha Yoga</div>
@@ -1691,15 +1523,8 @@
         </div>
 
         <div class="contact-layout">
-          <!-- Netlify-ready static form -->
           <div class="contact-form-card">
-            <!-- 
-              Netlify notes:
-              - data-netlify="true" or netlify attribute makes this form auto-handled at build time [web:31][web:38]
-              - "name" attribute is used as form identifier in dashboard [web:35][web:38]
-            -->
             <form name="kriya-contact" method="POST" data-netlify="true">
-              <!-- Netlify honeypot (optional but recommended) -->
               <input type="hidden" name="form-name" value="kriya-contact" />
               <p style="display:none;">
                 <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
@@ -1764,7 +1589,6 @@
             </form>
           </div>
 
-          <!-- Contact details -->
           <div class="contact-details">
             <div class="contact-block">
               <div class="contact-label">Studio address</div>
@@ -1818,9 +1642,11 @@
 <!-- =======================
      MICRO JS (no libraries)
      - fade-in on scroll using IntersectionObserver
+     - language toggle: VN default; EN redirects to /en.html on same domain
 ======================== -->
 <script>
   (function () {
+    // Fade-in on scroll
     var observed = document.querySelectorAll('.fade-section');
     if ('IntersectionObserver' in window) {
       var io = new IntersectionObserver(function (entries) {
@@ -1833,20 +1659,40 @@
       }, { threshold: 0.16 });
       observed.forEach(function (el) { io.observe(el); });
     } else {
-      // Fallback: show all if IntersectionObserver not supported
       observed.forEach(function (el) { el.classList.add('is-visible'); });
     }
 
-    // Simple visual-only language toggle state (no i18n wiring here)
+    // Language switcher
     var langButtons = document.querySelectorAll('.lang-toggle button');
+
+    function setActive(btn) {
+      langButtons.forEach(function (b) {
+        b.dataset.active = 'false';
+        b.setAttribute('aria-pressed', 'false');
+      });
+      btn.dataset.active = 'true';
+      btn.setAttribute('aria-pressed', 'true');
+    }
+
+    // Ensure VN is default active on load
+    var vnBtn = document.querySelector('.lang-toggle button[data-lang="vn"]');
+    if (vnBtn) setActive(vnBtn);
+
     langButtons.forEach(function (btn) {
       btn.addEventListener('click', function () {
-        langButtons.forEach(function (b) {
-          b.dataset.active = 'false';
-          b.setAttribute('aria-pressed', 'false');
-        });
-        btn.dataset.active = 'true';
-        btn.setAttribute('aria-pressed', 'true');
+        var lang = btn.getAttribute('data-lang');
+
+        if (lang === 'en') {
+          // Redirect to currentdomain/en.html
+          // (keeps protocol + host; always goes to root /en.html)
+          window.location.href = window.location.origin + '/en.html';
+          return;
+        }
+
+        if (lang === 'vn') {
+          // Stay on this page (VN)
+          setActive(btn);
+        }
       });
     });
   })();
