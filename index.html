@@ -1,14 +1,11 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
-  <!-- 
-    Kriya Yoga Center - One-page static site (phiên bản tiếng Việt)
-    Tech: Pure HTML + CSS, tiny vanilla JS
-  -->
+  <!-- Kriya Yoga Center - One-page static site (EN) -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kriya Yoga Center | Yoga Truyền Thống tại TP. Hồ Chí Minh</title>
-  <meta name="description" content="Kriya Yoga Center tại TP. Hồ Chí Minh cung cấp yoga truyền thống, chữa lành sang chấn và cảm xúc, hài hòa với nhịp sống hiện đại." />
+  <title>Kriya Yoga Center | Traditional Yoga in Ho Chi Minh City</title>
+  <meta name="description" content="Kriya Yoga Center in Ho Chi Minh City offers traditional yoga, trauma and emotional healing, and immersive retreats for modern life." />
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -625,6 +622,140 @@
       box-shadow: 0 10px 16px rgba(122,36,48,0.36);
     }
 
+    /* YOGA IMMERSIONS */
+    .immersions-wrapper {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .immersions-list {
+      display: grid;
+      gap: 1rem;
+    }
+
+    details.immersion {
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(231,155,56,0.28);
+      background: rgba(255,255,255,0.96);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.06);
+      padding: 0.75rem 1rem 0.9rem;
+      transition: box-shadow var(--transition-med), border-color var(--transition-med), background var(--transition-med), transform var(--transition-med);
+    }
+
+    details.immersion[open] {
+      box-shadow: var(--shadow-card);
+      border-color: rgba(122,36,48,0.48);
+      background: linear-gradient(135deg, rgba(246,239,229,0.98), rgba(255,255,255,0.98));
+      transform: translateY(-2px);
+    }
+
+    details.immersion + details.immersion {
+      margin-top: 0.2rem;
+    }
+
+    summary.immersion-header {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      outline: none;
+    }
+
+    summary.immersion-header::-webkit-details-marker {
+      display: none;
+    }
+
+    .immersion-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.18rem;
+    }
+
+    .immersion-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .immersion-meta {
+      font-size: 0.86rem;
+      color: var(--charcoal-soft);
+    }
+
+    .immersion-price {
+      font-weight: 600;
+    }
+
+    .immersion-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      background: rgba(231,155,56,0.14);
+      display: grid;
+      place-items: center;
+      color: var(--maroon);
+      font-size: 0.9rem;
+      box-shadow: 0 8px 18px rgba(231,155,56,0.35);
+      flex-shrink: 0;
+    }
+
+    .immersion-toggle {
+      margin-left: auto;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: rgba(38,38,41,0.65);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .immersion-toggle-symbol {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 1px solid rgba(122,36,48,0.4);
+      display: grid;
+      place-items: center;
+      font-size: 0.78rem;
+      transition: transform var(--transition-med), background var(--transition-med), color var(--transition-med), border-color var(--transition-med);
+    }
+
+    details.immersion[open] .immersion-toggle-symbol {
+      transform: rotate(90deg);
+      background: rgba(122,36,48,0.12);
+      color: var(--maroon);
+      border-color: rgba(122,36,48,0.7);
+    }
+
+    .immersion-body {
+      margin-top: 0.7rem;
+      padding-top: 0.65rem;
+      border-top: 1px dashed rgba(231,155,56,0.4);
+      font-size: 0.9rem;
+      color: var(--charcoal-soft);
+      display: grid;
+      gap: 0.35rem;
+    }
+
+    .immersion-body-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.4rem;
+    }
+
+    .immersion-bullet {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      margin-top: 0.4rem;
+      background: linear-gradient(135deg, var(--saffron), var(--maroon));
+      flex-shrink: 0;
+    }
+
     .approach-grid {
       display: grid;
       grid-template-columns: minmax(0, 1fr);
@@ -859,82 +990,9 @@
 
     @media (min-width: 860px) {
       .contact-layout {
-        grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
         gap: 3.2rem;
       }
-    }
-
-    .contact-form-card {
-      border-radius: var(--radius-lg);
-      padding: 1.9rem 1.6rem;
-      background: rgba(255,255,255,0.98);
-      border: 1px solid rgba(231,155,56,0.28);
-      box-shadow: var(--shadow-soft);
-    }
-
-    .contact-form-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 1rem;
-    }
-
-    @media (min-width: 640px) {
-      .contact-form-grid--two {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 1rem;
-      }
-    }
-
-    .field-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
-      font-size: 0.85rem;
-    }
-
-    .field-label {
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: rgba(38,38,41,0.8);
-    }
-
-    .field-label span {
-      margin-left: 0.1rem;
-      color: var(--maroon);
-    }
-
-    .field-input,
-    .field-textarea {
-      border-radius: 999px;
-      border: 1px solid rgba(38,38,41,0.14);
-      padding: 0.75rem 0.9rem;
-      font-size: 0.9rem;
-      font-family: inherit;
-      background: rgba(250,246,240,0.9);
-      transition: border-color var(--transition-med), box-shadow var(--transition-med), background var(--transition-med), transform var(--transition-med);
-    }
-
-    .field-textarea {
-      border-radius: 18px;
-      min-height: 120px;
-      resize: vertical;
-      line-height: 1.5;
-    }
-
-    .field-input:focus-visible,
-    .field-textarea:focus-visible {
-      border-color: rgba(231,155,56,0.9);
-      background: #fffdf9;
-      box-shadow: 0 0 0 1px rgba(231,155,56,0.75), 0 16px 30px rgba(0,0,0,0.18);
-      transform: translateY(-1px);
-      outline: none;
-    }
-
-    .contact-hint {
-      font-size: 0.78rem;
-      color: rgba(38,38,41,0.65);
-      margin-top: 0.4rem;
     }
 
     .contact-details {
@@ -1042,7 +1100,7 @@
 <body>
 <div class="page-shell">
   <header class="site-header">
-    <div class="nav-inner" aria-label="Điều hướng chính">
+    <div class="nav-inner" aria-label="Main navigation">
       <div class="brand-mark">
         <div class="brand-logo-circle" aria-hidden="true"></div>
         <div class="brand-text">
@@ -1051,68 +1109,70 @@
         </div>
       </div>
       <nav class="nav-links">
-        <a href="#about">Giới thiệu</a>
-        <a href="#practices">Lớp học</a>
-        <a href="#approach">Phương pháp</a>
-        <a href="#experience">Kinh nghiệm</a>
-        <a href="#contact">Liên hệ</a>
+        <a href="#about">About</a>
+        <a href="#practices">Practices</a>
+        <a href="#immersions">Yoga Immersions</a>
+        <a href="#approach">Approach</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
       </nav>
-      <!-- VN mặc định, EN chỉ hiển thị UI -->
-      <div class="lang-toggle" aria-label="Chọn ngôn ngữ">
-        <button type="button" data-lang="en" data-active="false" aria-pressed="false">EN</button>
-        <button type="button" data-lang="vi" data-active="true" aria-pressed="true">VI</button>
+      <div class="lang-toggle" aria-label="Language selection">
+        <button type="button" data-lang="en" data-active="true" aria-pressed="true">EN</button>
+        <button type="button" data-lang="vi" data-active="false" aria-pressed="false">VI</button>
       </div>
     </div>
   </header>
 
   <main>
+    <!-- HERO -->
     <section class="hero" id="top">
       <div class="container">
         <div class="hero-inner fade-section">
           <div class="hero-logo" aria-hidden="true">
             <div class="hero-logo-inner heading-serif">Kriya</div>
           </div>
-          <div class="hero-subtitle">Yoga Truyền Thống tại TP. Hồ Chí Minh</div>
+          <div class="hero-subtitle">Traditional Yoga in Ho Chi Minh City</div>
           <h1 class="heading-serif">Kriya Yoga Center</h1>
-          <p class="hero-tagline">nơi tâm hồn trở về Nhất Thể</p>
+          <p class="hero-tagline">where soul meets the One</p>
 
           <div class="hero-meta">
             <div class="meta-pill">
               <span class="meta-dot"></span>
-              Chữa lành sang chấn &amp; cảm xúc
+              Trauma &amp; emotional healing
             </div>
             <div class="meta-pill">
               <span class="meta-dot"></span>
-              Quận 6 · TP. Hồ Chí Minh
+              District 6 · Ho Chi Minh City
             </div>
           </div>
 
           <div class="hero-ctas">
             <a href="https://wa.me/0000000000" class="btn-primary" target="_blank" rel="noopener">
               <span class="icon" aria-hidden="true">✶</span>
-              <span>Nhắn qua WhatsApp</span>
+              <span>Message on WhatsApp</span>
             </a>
             <a href="#contact" class="btn-secondary-link">
-              <span>Hẹn một buổi ghé yên tĩnh</span>
+              <span>Book a quiet visit</span>
               <span aria-hidden="true">↳</span>
             </a>
           </div>
 
           <div class="scroll-hint">
-            <span>Cuộn xuống để lắng lại</span>
+            <span>Scroll to soften</span>
             <span class="scroll-line"></span>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- ABOUT -->
     <section id="about">
       <div class="container fade-section">
         <div class="section-header">
-          <div class="eyebrow">Về trung tâm</div>
-          <h2 class="heading-serif">Một ẩn thất giữa lòng phố</h2>
+          <div class="eyebrow">About the center</div>
+          <h2 class="heading-serif">A sanctuary in the city</h2>
           <p>
-            Kriya Yoga Center kết nối giáo lý yoga truyền thống với hướng tiếp cận chữa lành hiện đại, mở ra không gian an toàn để thở, cảm và trở về phần nguyên vẹn bên trong bạn.
+            Kriya Yoga Center weaves traditional yoga teachings with contemporary healing, offering a grounded space to breathe, feel, and return to what is whole within.
           </p>
           <div class="section-divider"></div>
         </div>
@@ -1120,53 +1180,53 @@
         <div class="about-layout">
           <div class="about-body">
             <p>
-              Giữa nhịp sống của Sài Gòn, phòng tập được giữ yên với ánh nến dịu, nơi hệ thần kinh có thể buông lỏng, cơ thể được mềm ra và tâm trí được mời ngồi lại sau ngày dài ồn ã.
+              In the heart of Ho Chi Minh City, the studio holds quiet, candlelit rooms where nervous systems can exhale, bodies can soften, and minds are invited into stillness beyond daily noise.
             </p>
             <p>
-              Mỗi buổi thực hành được thiết kế tinh tế cho tiến trình chữa lành sang chấn và cảm xúc, kết hợp cảm nhận thân thể, hơi thở dẫn dắt và kỹ thuật yoga cổ điển với nhịp độ phù hợp từng người.
+              Sessions are crafted for trauma and emotional healing, blending somatic awareness, breath-led practice, and classical yogic techniques that honor each student’s pace.
             </p>
             <p>
-              Dù bạn mới bước vào yoga hay đã gắn bó lâu năm, trung tâm mang lại trải nghiệm riêng tư, ấm áp, mang tính thực hành hơn là phô diễn, đặt nền trên truyền thừa, sự khiêm nhường và đời sống thường ngày.
+              Whether you are new to yoga or deepening a long-term practice, the center offers a premium yet intimate experience rooted in lineage, humility, and everyday integration rather than performance.
             </p>
             <div class="about-pill-row">
               <div class="about-pill">
                 <span class="about-pill-dot"></span>
-                Điều hòa hệ thần kinh
+                Nervous system regulation
               </div>
               <div class="about-pill">
                 <span class="about-pill-dot"></span>
-                Hướng dẫn nhẹ nhàng, đặt sự an toàn lên trước
+                Gentle trauma-informed teaching
               </div>
               <div class="about-pill">
                 <span class="about-pill-dot"></span>
-                Hơi thở, mantra &amp; thiền định
+                Breath, mantra &amp; meditation
               </div>
               <div class="about-pill">
                 <span class="about-pill-dot"></span>
-                Nhóm nhỏ, nhiều không gian riêng
+                Small, spacious classes
               </div>
             </div>
           </div>
 
-          <aside class="about-aside" aria-label="Cảm nhận của học viên">
+          <aside class="about-aside" aria-label="Student reflections">
             <div class="about-aside-content">
-              <div class="about-aside-title">Học viên thường chia sẻ</div>
+              <div class="about-aside-title">What students often say</div>
               <ul class="about-aside-list">
                 <li>
                   <span class="about-aside-icon" aria-hidden="true">◎</span>
-                  <span>“Giống một ashram nhỏ yên tĩnh được giấu trong lòng thành phố.”</span>
+                  <span>“It feels like a quiet ashram hidden inside the city.”</span>
                 </li>
                 <li>
                   <span class="about-aside-icon" aria-hidden="true">✺</span>
-                  <span>“Cơ thể vừa khỏe lên, vừa cảm thấy thật an toàn.”</span>
+                  <span>“My body feels both strong and deeply safe here.”</span>
                 </li>
                 <li>
                   <span class="about-aside-icon" aria-hidden="true">⌘</span>
-                  <span>“Lớp học giữ được cảm xúc của tôi mà không thúc ép điều gì.”</span>
+                  <span>“Classes hold my emotions without forcing anything.”</span>
                 </li>
                 <li>
                   <span class="about-aside-icon" aria-hidden="true">✧</span>
-                  <span>“Không gian đẹp, nhẹ, không phô trương nhưng rất tinh tế.”</span>
+                  <span>“It is premium, yet soft, simple, and honest.”</span>
                 </li>
               </ul>
             </div>
@@ -1175,134 +1235,135 @@
       </div>
     </section>
 
+    <!-- PRACTICES -->
     <section id="practices">
       <div class="container fade-section">
         <div class="section-header">
-          <div class="eyebrow">Lớp học &amp; thực hành</div>
-          <h2 class="heading-serif">Những lối nhỏ đi vào tĩnh lặng</h2>
+          <div class="eyebrow">Practices &amp; offerings</div>
+          <h2 class="heading-serif">Paths into stillness</h2>
           <p>
-            Từ nền tảng cơ bản đến những thực hành vi tế, mỗi lớp được xây dựng để gặp bạn đúng tại nơi thân và tâm đang có mặt hôm nay.
+            Explore structured classes and gentle tools, from foundational postures to subtle energetic work, designed to meet you exactly where your body and heart are today.
           </p>
           <div class="section-divider"></div>
         </div>
 
-        <div class="offerings-grid" aria-label="Các lớp yoga">
+        <div class="offerings-grid" aria-label="Yoga practices">
           <article class="offering-card">
-            <div class="offering-tag">Nền tảng vững chãi</div>
+            <div class="offering-tag">Steady foundations</div>
             <div class="offering-title heading-serif">Hatha Yoga</div>
             <p class="offering-body">
-              Thực hành tư thế chậm, có khoảng nghỉ, chú trọng căn chỉnh, giúp cơ thể được nối đất và làm dịu tâm trí sau một ngày nhiều kích thích.
+              Slow, spacious postural practice with refined alignment, ideal for grounding the body and calming overstimulated minds after a full day in the city.
             </p>
             <div class="offering-meta">
-              <span>Cường độ nhẹ–vừa</span>
+              <span>Gentle–moderate intensity</span>
               <div class="offering-icon" aria-hidden="true">☉</div>
             </div>
           </article>
 
           <article class="offering-card">
-            <div class="offering-tag">Dòng chảy nội tâm</div>
+            <div class="offering-tag">Inner current</div>
             <div class="offering-title heading-serif">Kriya Yoga</div>
             <p class="offering-body">
-              Thực hành cổ điển với hơi thở, bandha và tập trung, được hướng dẫn cẩn trọng để thanh lọc kênh năng lượng và dẫn tới trạng thái thiền sâu hơn.
+              Classical breath, bandha, and concentration techniques taught with care, supporting purification of subtle channels and deeper meditative absorption.
             </p>
             <div class="offering-meta">
-              <span>Thực hành vi tế có hướng dẫn</span>
+              <span>Guided subtle practice</span>
               <div class="offering-icon" aria-hidden="true">△</div>
             </div>
           </article>
 
           <article class="offering-card">
-            <div class="offering-tag">Chuyển động mềm mại</div>
+            <div class="offering-tag">Fluid movement</div>
             <div class="offering-title heading-serif">Vinyasa</div>
             <p class="offering-body">
-              Chuỗi động tác nối với nhịp thở như thiền trong chuyển động, cân bằng sức mạnh và sự uyển chuyển mà không vội vàng hay ganh đua.
+              Breath-linked sequences that feel like moving meditation, balancing strength and grace without urgency or performance.
             </p>
             <div class="offering-meta">
-              <span>Chuỗi flow năng động</span>
+              <span>Dynamic flow</span>
               <div class="offering-icon" aria-hidden="true">⟡</div>
             </div>
           </article>
 
           <article class="offering-card">
-            <div class="offering-tag">Kỷ luật &amp; nội lực</div>
+            <div class="offering-tag">Discipline &amp; fire</div>
             <div class="offering-title heading-serif">Ashtanga</div>
             <p class="offering-body">
-              Chuỗi truyền thống trong không gian hỗ trợ, không cạnh tranh, phù hợp với học viên tìm kiếm cấu trúc rõ ràng và sức bền từ bên trong.
+              Traditional sequences held in a supportive, non-competitive environment, ideal for students seeking structure and inner resilience.
             </p>
             <div class="offering-meta">
-              <span>Chuỗi tiến cấp</span>
+              <span>Progressive series</span>
               <div class="offering-icon" aria-hidden="true">✶</div>
             </div>
           </article>
 
           <article class="offering-card">
-            <div class="offering-tag">Thanh lọc bên trong</div>
+            <div class="offering-tag">Inner cleansing</div>
             <div class="offering-title heading-serif">Shatkarma</div>
             <p class="offering-body">
-              Các pháp thanh lọc nhẹ nhàng, được hướng dẫn riêng trong khuôn khổ an toàn, dành cho học viên sẵn sàng đi sâu hơn vào vệ sinh yogic.
+              Gentle, teacher-guided purification practices offered in a safe container for students ready to explore deeper yogic hygiene.
             </p>
             <div class="offering-meta">
-              <span>Thực hiện theo hẹn</span>
+              <span>By appointment</span>
               <div class="offering-icon" aria-hidden="true">☲</div>
             </div>
           </article>
 
           <article class="offering-card">
-            <div class="offering-tag">Trung tâm tĩnh lặng</div>
-            <div class="offering-title heading-serif">Thiền định</div>
+            <div class="offering-tag">Quiet center</div>
+            <div class="offering-title heading-serif">Meditation</div>
             <p class="offering-body">
-              Hướng dẫn ngồi thiền với hơi thở, mantra và chánh niệm đơn giản, hỗ trợ điều hòa cảm xúc và cảm nhận không gian rộng mở bên trong.
+              Seated guidance using breath, mantra, and simple awareness, supporting emotional regulation and a felt sense of inner spaciousness.
             </p>
             <div class="offering-meta">
-              <span>Phù hợp mọi trình độ</span>
+              <span>All levels</span>
               <div class="offering-icon" aria-hidden="true">◦</div>
             </div>
           </article>
 
           <article class="offering-card">
-            <div class="offering-tag">Mở rộng lồng ngực</div>
+            <div class="offering-tag">Heart opening</div>
             <div class="offering-title heading-serif">Wheel Yoga</div>
             <p class="offering-body">
-              Các tư thế uốn lưng và giải tỏa vùng ngực với vòng yoga, giúp giải phóng căng thẳng ở vai, lưng trên và tim.
+              Supported backbends and playful arcs using the yoga wheel, helping release stored tension across the chest, shoulders, and spine.
             </p>
             <div class="offering-meta">
-              <span>Thực hành với dụng cụ</span>
+              <span>Props-based</span>
               <div class="offering-icon" aria-hidden="true">⭓</div>
             </div>
           </article>
 
           <article class="offering-card">
-            <div class="offering-tag">Thả lỏng sâu</div>
+            <div class="offering-tag">Deep release</div>
             <div class="offering-title heading-serif">Ball Yoga</div>
             <p class="offering-body">
-              Tác động myofascial bằng bóng mềm và hơi thở chánh niệm, hỗ trợ tháo gỡ những điểm căng lâu năm ở hông, lưng dưới, hàm và vai.
+              Targeted myofascial work with soft balls and mindful breath to unwind chronic holding, especially around hips, jaw, and lower back.
             </p>
             <div class="offering-meta">
-              <span>Định hướng phục hồi</span>
+              <span>Restorative focus</span>
               <div class="offering-icon" aria-hidden="true">●</div>
             </div>
           </article>
 
           <article class="offering-card">
-            <div class="offering-tag">Cảm giác bay mà vẫn an toàn</div>
+            <div class="offering-tag">Weightless support</div>
             <div class="offering-title heading-serif">Aerial Yoga</div>
             <p class="offering-body">
-              Võng lụa nâng đỡ cơ thể trong các tư thế giãn giải nén, đảo ngược nhẹ và những chuyển động chơi đùa mà vẫn rất vững chãi.
+              Silk hammocks cradle the body for decompression, gentle inversions, and a playful sense of suspension that remains grounded and safe.
             </p>
             <div class="offering-meta">
-              <span>Nhóm nhỏ, được kèm kỹ</span>
+              <span>Small groups</span>
               <div class="offering-icon" aria-hidden="true">∞</div>
             </div>
           </article>
 
           <article class="offering-card">
-            <div class="offering-tag">Dụng cụ hỗ trợ căn chỉnh</div>
-            <div class="offering-title heading-serif">Strap / Gậy / Tường</div>
+            <div class="offering-tag">Alignment tools</div>
+            <div class="offering-title heading-serif">Strap / Stick / Wall Yoga</div>
             <p class="offering-body">
-              Kết hợp tường, dây và gậy tre để tinh chỉnh tư thế, ổn định khớp và nâng đỡ cơ thể đang mệt, đau hoặc phục hồi chấn thương.
+              Intelligent use of wall, straps, and bamboo sticks to refine posture, stabilize joints, and support bodies working with injury or fatigue.
             </p>
             <div class="offering-meta">
-              <span>Dễ điều chỉnh cho từng người</span>
+              <span>Highly adaptable</span>
               <div class="offering-icon" aria-hidden="true">⟀</div>
             </div>
           </article>
@@ -1310,104 +1371,243 @@
       </div>
     </section>
 
+    <!-- YOGA IMMERSIONS -->
+    <section id="immersions">
+      <div class="container fade-section">
+        <div class="section-header">
+          <div class="eyebrow">Yoga immersions</div>
+          <h2 class="heading-serif">Going a little deeper</h2>
+          <p>
+            These immersions are kept intimate and unhurried, more like a retreat for your nervous system
+            than a holiday, so there is space to truly arrive in your own body and breath.
+          </p>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="immersions-wrapper" aria-label="Yoga immersion programs">
+          <div class="immersions-list">
+            <!-- 3-Day Intensive Reset -->
+            <details class="immersion">
+              <summary class="immersion-header">
+                <div class="immersion-icon" aria-hidden="true">✶</div>
+                <div class="immersion-main">
+                  <div class="immersion-title">3-Day Intensive Reset</div>
+                  <div class="immersion-meta">
+                    <span class="immersion-price">USD $199</span> · Airport pickup &amp; welcome ritual
+                  </div>
+                </div>
+                <span class="immersion-toggle">
+                  <span>View details</span>
+                  <span class="immersion-toggle-symbol" aria-hidden="true">+</span>
+                </span>
+              </summary>
+              <div class="immersion-body">
+                <div class="immersion-body-row">
+                  <span class="immersion-bullet" aria-hidden="true"></span>
+                  <p>Morning: gentle flow to wake the body and soften jet lag or work fatigue.</p>
+                </div>
+                <div class="immersion-body-row">
+                  <span class="immersion-bullet" aria-hidden="true"></span>
+                  <p>Midday: detox-focused pranayama to support light cleansing and deeper breathing.</p>
+                </div>
+                <div class="immersion-body-row">
+                  <span class="immersion-bullet" aria-hidden="true"></span>
+                  <p>Evening: quiet meditation to let emotions settle without pressure to “fix” anything.</p>
+                </div>
+                <div class="immersion-body-row">
+                  <span class="immersion-bullet" aria-hidden="true"></span>
+                  <p>Arrival welcome ceremony to mark your transition into a slower, kinder rhythm.</p>
+                </div>
+                <div class="immersion-body-row">
+                  <span class="immersion-bullet" aria-hidden="true"></span>
+                  <p>Finishes after 11:00 AM on Day 3, giving you time to gently re-enter your daily life.</p>
+                </div>
+              </div>
+            </details>
+
+            <!-- 5-Day Soul Journey -->
+            <details class="immersion">
+              <summary class="immersion-header">
+                <div class="immersion-icon" aria-hidden="true">✺</div>
+                <div class="immersion-main">
+                  <div class="immersion-title">5-Day Soul Journey</div>
+                  <div class="immersion-meta">
+                    <span class="immersion-price">USD $349</span> · Airport pickup &amp; space for depth
+                  </div>
+                </div>
+                <span class="immersion-toggle">
+                  <span>View details</span>
+                  <span class="immersion-toggle-symbol" aria-hidden="true">+</span>
+                </span>
+              </summary>
+              <div class="immersion-body">
+                <div class="immersion-body-row">
+                  <span class="immersion-bullet" aria-hidden="true"></span>
+                  <p>Traditional yoga practice at a sustainable pace that respects where your body is now.</p>
+                </div>
+                <div class="immersion-body-row">
+                  <span class="immersion-bullet" aria-hidden="true"></span>
+                  <p>Daily pranayama to gently clear overwhelm and invite an inner sense of clarity.</p>
+                </div>
+                <div class="immersion-body-row">
+                  <span class="immersion-bullet" aria-hidden="true"></span>
+                  <p>Sacred sound (simple mantra and chanting) as an anchor for stability and presence.</p>
+                </div>
+                <div class="immersion-body-row">
+                  <span class="immersion-bullet" aria-hidden="true"></span>
+                  <p>Room for emotional clarity and a slower physical detox process without forcing outcomes.</p>
+                </div>
+                <div class="immersion-body-row">
+                  <span class="immersion-bullet" aria-hidden="true"></span>
+                  <p>Finishes after 11:00 AM on Day 5, leaving space for a quiet lunch and travel.</p>
+                </div>
+              </div>
+            </details>
+
+            <!-- 7-Day Total Transformation -->
+            <details class="immersion">
+              <summary class="immersion-header">
+                <div class="immersion-icon" aria-hidden="true">◎</div>
+                <div class="immersion-main">
+                  <div class="immersion-title">7-Day Total Transformation</div>
+                  <div class="immersion-meta">
+                    <span class="immersion-price">USD $599</span> · Signature immersive experience</span>
+                  </div>
+                </div>
+                <span class="immersion-toggle">
+                  <span>View details</span>
+                  <span class="immersion-toggle-symbol" aria-hidden="true">+</span>
+                </span>
+              </summary>
+              <div class="immersion-body">
+                <div class="immersion-body-row">
+                  <span class="immersion-bullet" aria-hidden="true"></span>
+                  <p>Morning and evening asana tailored to your capacity, building quiet strength and openness.</p>
+                </div>
+                <div class="immersion-body-row">
+                  <span class="immersion-bullet" aria-hidden="true"></span>
+                  <p>Daily meditation to sit with what arises, at a pace that honors your emotional landscape.</p>
+                </div>
+                <div class="immersion-body-row">
+                  <span class="immersion-bullet" aria-hidden="true"></span>
+                  <p>Deep healing sessions that weave breath, sound, and conscious rest in a safe container.</p>
+                </div>
+                <div class="immersion-body-row">
+                  <span class="immersion-bullet" aria-hidden="true"></span>
+                  <p>The week is held as a ritual, not a performance, for those who feel ready to look gently at their life from a quieter vantage point.</p>
+                </div>
+                <div class="immersion-body-row">
+                  <span class="immersion-bullet" aria-hidden="true"></span>
+                  <p>Finishes after 11:00 AM on Day 7, allowing time to integrate and return home with more inner space.</p>
+                </div>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- APPROACH -->
     <section id="approach">
       <div class="container fade-section">
         <div class="section-header">
-          <div class="eyebrow">Phương pháp</div>
-          <h2 class="heading-serif">Gốc rễ, dịu dàng, đương đại</h2>
+          <div class="eyebrow">Our approach</div>
+          <h2 class="heading-serif">Rooted, gentle, contemporary</h2>
           <p>
-            Mỗi buổi học là cuộc gặp giữa truyền thống và đời sống Sài Gòn hôm nay, tôn trọng phương pháp cổ điển nhưng nói bằng ngôn ngữ của hệ thần kinh hiện đại.
+            Each class is a meeting point of lineage and lived life in Saigon, honoring ancient methods while speaking gently to modern nervous systems and schedules.
           </p>
           <div class="section-divider"></div>
         </div>
 
         <div class="approach-grid">
           <article class="approach-card">
-            <div class="approach-badge">Truyền thừa truyền thống</div>
+            <div class="approach-badge">Traditional Lineage</div>
             <div class="approach-divider"></div>
-            <div class="approach-title heading-serif">Được nâng đỡ bởi giáo pháp cổ điển</div>
+            <div class="approach-title heading-serif">Held by timeless teachings</div>
             <p class="approach-body">
-              Trung tâm đi theo những khung Kriya và Hatha cổ điển, dung hòa mantra, mudra và hơi thở theo cách giữ trọn gốc rễ yoga, không làm loãng.
+              The center follows classical Kriya and Hatha frameworks, integrating mantra, mudra, and breath in a way that respects the roots of yoga rather than diluting them.
             </p>
             <p class="approach-body">
-              Học viên được khuyến khích xây dựng nhịp thực hành đều đặn, có tính cúng dường, thay vì liên tục chạy theo cái mới, để chiều sâu tự nhiên mở ra theo thời gian.
+              Students are encouraged to build steady, devotional practice rhythms instead of chasing novelty, allowing depth to unfold over time.
             </p>
           </article>
 
           <article class="approach-card">
-            <div class="approach-badge">Chữa lành sang chấn &amp; cảm xúc</div>
+            <div class="approach-badge">Trauma &amp; Emotional Healing</div>
             <div class="approach-divider"></div>
-            <div class="approach-title heading-serif">Không gian để cảm xúc được an nghỉ</div>
+            <div class="approach-title heading-serif">Spaces where feelings can land</div>
             <p class="approach-body">
-              Lớp học mang tính đồng thuận, liên tục mời gọi lựa chọn, nhịp độ và cảm nhận bên trong, để cơ thể có thể xả bớt tích tụ mà không bị tái kích hoạt.
+              Classes are consent-based, inviting choice, pacing, and interoception so the body can release, rather than re-create, overwhelm.
             </p>
             <p class="approach-body">
-              Ngôn ngữ thân tâm nhẹ nhàng và các tư thế phục hồi giúp làm mềm lớp giáp bảo vệ, nhường chỗ cho buồn, vui, dịu dàng và hoan hỷ đến đi tự nhiên.
+              Gentle somatic language and restorative shapes help soften armor, making room for grief, tenderness, and joy without pressure.
             </p>
           </article>
 
           <article class="approach-card">
-            <div class="approach-badge">Hòa vào nhịp sống hiện đại</div>
+            <div class="approach-badge">Modern Lifestyle Integration</div>
             <div class="approach-divider"></div>
-            <div class="approach-title heading-serif">Yoga đi cùng đời sống thật</div>
+            <div class="approach-title heading-serif">Yoga that lives with you</div>
             <p class="approach-body">
-              Lịch học được sắp xếp theo nhịp công việc và gia đình tại TP. Hồ Chí Minh: sáng sớm khởi động nhẹ, giữa ngày cân bằng lại, tối đến thu mình và lắng yên.
+              Schedules are designed around work and family rhythms in Ho Chi Minh City, with early mornings, mid-day resets, and quiet evening practices.
             </p>
             <p class="approach-body">
-              Mỗi người rời lớp với những công cụ đơn giản: hơi thở, chuyển động nhỏ, nghi thức ngắn có thể mang vào giờ làm, đường về và ngôi nhà của mình.
+              Students leave with simple tools—breathing, micro-movements, short meditations—that can be carried into commutes, offices, and homes.
             </p>
           </article>
         </div>
       </div>
     </section>
 
+    <!-- EXPERIENCE -->
     <section id="experience">
       <div class="container fade-section">
         <div class="section-header">
-          <div class="eyebrow">Kinh nghiệm &amp; chứng nhận</div>
-          <h2 class="heading-serif">Để bạn yên tâm được nâng đỡ</h2>
+          <div class="eyebrow">Experience &amp; credentials</div>
+          <h2 class="heading-serif">Trust the holding</h2>
           <p>
-            Đằng sau mỗi lớp học tĩnh lặng là đội ngũ giáo viên nhiều năm thực hành, giảng dạy trong và ngoài nước, đi qua hành trình chữa lành của chính mình.
+            Behind every quiet class is a team shaped by years of study, international teaching, and the humility that comes from their own healing journeys.
           </p>
           <div class="section-divider"></div>
         </div>
 
         <div class="experience-banner">
           <div class="experience-main">
-            <h3 class="heading-serif">Chiều sâu thực hành</h3>
+            <h3 class="heading-serif">Depth of practice</h3>
             <p>
-              Giáo viên được nuôi dưỡng bởi sadhana dài hạn, các khóa đào tạo trị liệu và sự kèm cặp từ những bậc thầy lớn, mang tới cả kỹ thuật rõ ràng lẫn sự hiện diện ấm áp trong từng buổi học.
+              Teachers draw from long-term sadhana, therapeutic training, and mentorship with senior yogis, bringing both technical clarity and heartfelt presence into each room.
             </p>
           </div>
-          <div class="experience-badges" aria-label="Thông tin tin cậy của trung tâm">
+          <div class="experience-badges" aria-label="Center credentials">
             <div class="badge-card">
-              <span class="badge-label">Số năm kinh nghiệm</span>
-              <span class="badge-value">Trên 15 năm giảng dạy cộng gộp</span>
+              <span class="badge-label">Years of experience</span>
+              <span class="badge-value">15+ years of combined teaching</span>
             </div>
             <div class="badge-card">
-              <span class="badge-label">Chứng nhận</span>
-              <span class="badge-value">Chỗ trống dành cho RYT / dòng truyền thừa</span>
+              <span class="badge-label">Certifications</span>
+              <span class="badge-value">Placeholder for RYT / lineage details</span>
             </div>
             <div class="badge-card">
-              <span class="badge-label">Học viên quốc tế</span>
-              <span class="badge-value">Đón học viên từ hơn 10 quốc gia</span>
+              <span class="badge-label">International students</span>
+              <span class="badge-value">Students from 10+ countries welcomed</span>
             </div>
             <div class="badge-card">
-              <span class="badge-label">Đánh giá Google</span>
-              <span class="badge-value">Chỗ trống dành cho điểm số &amp; lượt nhận xét</span>
+              <span class="badge-label">Google reviews</span>
+              <span class="badge-value">Placeholder for rating &amp; review count</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- TESTIMONIALS -->
     <section id="testimonials" class="testimonials-section">
       <div class="container fade-section">
         <div class="section-header">
-          <div class="eyebrow">Lời từ học viên</div>
-          <h2 class="heading-serif">Bình an, được giữ, được thấy</h2>
+          <div class="eyebrow">Student words</div>
+          <h2 class="heading-serif">Calm, held, seen</h2>
           <p>
-            Những chia sẻ dưới đây là nội dung mẫu, nhưng phản ánh phần nào sự chân thật, dịu dàng mà học viên thường nói khi nơi này trở thành “nhà” để quay về.
+            These sample reflections mirror the kind of quiet, sincere feedback that often appears when practice becomes a soft way home.
           </p>
           <div class="section-divider"></div>
         </div>
@@ -1415,166 +1615,118 @@
         <div class="testimonials-grid">
           <article class="testimonial-card">
             <p class="testimonial-body">
-              “Ban đầu tôi chỉ nghĩ là đi giãn cơ, sau đó nhận ra mình đang mềm lại với chính trái tim của mình. Ở đây chẳng ai ép buộc – giáo viên chỉ mời gọi, rất nhẹ.”
+              “I came for stretching and left with a softer relationship to my own heart. Nothing is forced here—the teachers invite, they do not push.”
             </p>
             <div class="testimonial-footer">
               <div>
-                <div><strong>Tên học viên (placeholder)</strong></div>
-                <div class="testimonial-role">Học viên lớp tối</div>
+                <div><strong>Placeholder name</strong></div>
+                <div class="testimonial-role">Evening student</div>
               </div>
-              <div>TP. Hồ Chí Minh</div>
+              <div>Ho Chi Minh City</div>
             </div>
           </article>
 
           <article class="testimonial-card">
             <p class="testimonial-body">
-              “Là người đang hồi phục sau kiệt sức, tôi chưa từng cảm thấy bị thúc. Mỗi buổi học cho hệ thần kinh của tôi phép được chậm lại và nghỉ ngơi thật sự.”
+              “As someone healing from burnout, I never felt rushed. Each class gives my nervous system permission to slow down and truly rest.”
             </p>
             <div class="testimonial-footer">
               <div>
-                <div><strong>Tên học viên (placeholder)</strong></div>
-                <div class="testimonial-role">Lộ trình chữa lành sang chấn</div>
+                <div><strong>Placeholder name</strong></div>
+                <div class="testimonial-role">Trauma-informed track</div>
               </div>
-              <div>Khách quốc tế</div>
+              <div>International guest</div>
             </div>
           </article>
 
           <article class="testimonial-card">
             <p class="testimonial-body">
-              “Không gian rất tinh tế nhưng không phô trương. Cái đẹp ở đây rất nhẹ, và chính sự nhẹ đó nâng đỡ toàn bộ trải nghiệm thực hành.”
+              “The space feels premium yet humble. It is beautiful without being loud, and that quiet beauty supports the practice itself.”
             </p>
             <div class="testimonial-footer">
               <div>
-                <div><strong>Tên học viên (placeholder)</strong></div>
-                <div class="testimonial-role">Học viên cuối tuần</div>
+                <div><strong>Placeholder name</strong></div>
+                <div class="testimonial-role">Weekend practitioner</div>
               </div>
-              <div>Quận 6</div>
+              <div>District 6</div>
             </div>
           </article>
         </div>
       </div>
     </section>
 
+    <!-- CTA -->
     <section class="cta-band">
       <div class="container">
         <div class="cta-inner fade-section">
-          <div class="eyebrow">Lời mời nhẹ nhàng</div>
-          <h2 class="cta-title heading-serif">Bắt đầu ngay tại nơi bạn đang đứng</h2>
+          <div class="eyebrow">A gentle invitation</div>
+          <h2 class="cta-title heading-serif">Begin where you are</h2>
           <p class="cta-body">
-            Bạn không cần phải dẻo, bình yên hay “sẵn sàng” mới có thể bắt đầu. Cứ mang theo thân thể mệt, tâm trí bận rộn và trái tim còn đang run – tất cả đều được chào đón trên tấm thảm này.
+            You do not have to be flexible, calm, or “ready” to start. Bring your tired body, your busy mind, your tender heart—everything is welcome on the mat.
           </p>
           <a href="https://wa.me/0000000000" class="btn-primary" target="_blank" rel="noopener">
             <span class="icon" aria-hidden="true">✶</span>
-            <span>Mở WhatsApp &amp; gửi một lời chào</span>
+            <span>Open WhatsApp &amp; say hello</span>
           </a>
           <div class="cta-sub">
-            Chỉ một tin nhắn nhỏ cũng có thể mở ra một cách sống mới với chính mình.
+            One quiet message can open an entirely new way of being with yourself.
           </div>
         </div>
       </div>
     </section>
 
+    <!-- CONTACT (WhatsApp-first, no form) -->
     <section id="contact" class="contact-section">
       <div class="container fade-section">
         <div class="section-header">
-          <div class="eyebrow">Liên hệ &amp; ghé thăm</div>
-          <h2 class="heading-serif">Bước vào không gian này</h2>
+          <div class="eyebrow">Contact &amp; visits</div>
+          <h2 class="heading-serif">Step into the space</h2>
           <p>
-            Nếu bạn quan tâm đến lớp học, buổi riêng hoặc hành trình chữa lành sâu hơn, hãy gửi một vài dòng chia sẻ. Đội ngũ sẽ phản hồi một cách nhẹ nhàng, rõ ràng và tôn trọng nhịp của bạn.
+            If something in this page speaks to you, send a gentle WhatsApp message
+            or read more about visiting the studio below.
           </p>
           <div class="section-divider"></div>
         </div>
 
         <div class="contact-layout">
-          <div class="contact-form-card">
-            <!-- Trong Google Sites, form này mang tính trình bày. Hãy gắn với Google Form nếu muốn nhận dữ liệu. -->
-            <form>
-              <div class="contact-form-grid contact-form-grid--two">
-                <div class="field-group">
-                  <label class="field-label" for="name">Họ tên<span>*</span></label>
-                  <input id="name" name="name" type="text" class="field-input" required />
-                </div>
-                <div class="field-group">
-                  <label class="field-label" for="email">Email<span>*</span></label>
-                  <input id="email" name="email" type="email" class="field-input" required />
-                </div>
-              </div>
-
-              <div class="contact-form-grid" style="margin-top:1rem;">
-                <div class="field-group">
-                  <label class="field-label" for="phone">Số WhatsApp</label>
-                  <input id="phone" name="phone" type="tel" class="field-input" />
-                  <div class="contact-hint">
-                    Vui lòng ghi kèm mã quốc gia để trung tâm có thể nhắn cho bạn trực tiếp.
-                  </div>
-                </div>
-              </div>
-
-              <div class="contact-form-grid" style="margin-top:1rem;">
-                <div class="field-group">
-                  <label class="field-label" for="interest">Điều bạn đang tìm kiếm</label>
-                  <input
-                    id="interest"
-                    name="interest"
-                    type="text"
-                    class="field-input"
-                    placeholder="vd: chữa lành nhẹ nhàng, nhập môn Kriya, buổi riêng"
-                  />
-                </div>
-              </div>
-
-              <div class="contact-form-grid" style="margin-top:1rem;">
-                <div class="field-group">
-                  <label class="field-label" for="message">Lời nhắn của bạn<span>*</span></label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    class="field-textarea"
-                    required
-                    placeholder="Bạn có thể chia sẻ đôi điều về hiện trạng, nguyện vọng hoặc điều bạn muốn được lưu tâm trước khi đến."
-                  ></textarea>
-                </div>
-              </div>
-
-              <div style="margin-top:1.4rem; display:flex; flex-wrap:wrap; gap:0.8rem; align-items:center;">
-                <button type="submit" class="btn-primary">
-                  <span class="icon" aria-hidden="true">✶</span>
-                  <span>Gửi lời nhắn (demo)</span>
-                </button>
-                <span class="contact-hint">
-                  Để nhận được phản hồi thật, hãy kết nối khu vực này với Google Form trong Google Sites.
-                </span>
-              </div>
-            </form>
-          </div>
-
+          <!-- WhatsApp & note -->
           <div class="contact-details">
             <div class="contact-block">
-              <div class="contact-label">Địa chỉ studio</div>
-              <div class="contact-value">Quận 6, TP. Hồ Chí Minh</div>
+              <div class="contact-label">WhatsApp</div>
+              <a href="https://wa.me/0000000000" class="contact-whatsapp" target="_blank" rel="noopener">
+                <span class="contact-whatsapp-icon" aria-hidden="true">◎</span>
+                <span>Message directly on WhatsApp · +84 (placeholder)</span>
+              </a>
+              <p class="contact-note">
+                You are welcome to share a few lines about your current season
+                (stress, burnout, transition, grief...) so the team can suggest a pace that feels kind.
+              </p>
+            </div>
+          </div>
+
+          <!-- Address & rhythm -->
+          <div class="contact-details">
+            <div class="contact-block">
+              <div class="contact-label">Studio address</div>
+              <div class="contact-value">District 6, Ho Chi Minh City</div>
               <p>
-                Hướng dẫn đường đi chi tiết sẽ được gửi sau khi đăng ký, để giữ sự yên tĩnh cho không gian và cộng đồng xung quanh.
+                Detailed directions are shared after you confirm via WhatsApp,
+                to protect the quiet of the space and the neighborhood around it.
               </p>
             </div>
 
             <div class="contact-block">
-              <div class="contact-label">WhatsApp</div>
-              <div class="contact-whatsapp">
-                <span class="contact-whatsapp-icon" aria-hidden="true">◎</span>
-                <span>+84 (placeholder) · Nhấn “Nhắn qua WhatsApp” phía trên</span>
-              </div>
-            </div>
-
-            <div class="contact-block">
-              <div class="contact-label">Nhịp lớp học</div>
+              <div class="contact-label">Class rhythm</div>
               <p>
-                Buổi sáng: làm ấm nhẹ nhàng, nối đất cho ngày mới.<br />
-                Buổi tối: xả ngày, tư thế phục hồi và thiền dẫn.
+                Morning: gentle awakening and grounding for the day ahead.<br />
+                Evening: unwinding flows, restorative postures, and guided meditation.
               </p>
             </div>
 
             <p class="contact-note">
-              Nếu bạn đang trong quá trình điều trị tâm lý hoặc trải qua sang chấn cấp tính, hãy ghi rõ trong lời nhắn để trung tâm có thể đề xuất nhịp độ và hỗ trợ phù hợp, hoặc giới thiệu chuyên gia khi cần.
+              If you are in active psychiatric care or moving through acute trauma,
+              naming this in your message helps the team respond with appropriate pacing
+              or referrals to other professionals when needed.
             </p>
           </div>
         </div>
@@ -1582,12 +1734,13 @@
     </section>
   </main>
 
+  <!-- FOOTER -->
   <footer class="site-footer">
     <div class="footer-inner">
-      <div>Kriya Yoga Center · Quận 6 · TP. Hồ Chí Minh</div>
+      <div>Kriya Yoga Center · District 6 · Ho Chi Minh City</div>
       <div class="footer-right">
-        <div class="footer-pill">Yoga truyền thống &amp; chữa lành hiện đại</div>
-        <div class="footer-pill">Từng hơi thở, thật khẽ</div>
+        <div class="footer-pill">Traditional yoga &amp; modern healing</div>
+        <div class="footer-pill">One quiet breath at a time</div>
       </div>
     </div>
   </footer>
@@ -1625,8 +1778,3 @@
 </script>
 </body>
 </html>
-```
-
-[1](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/149928386/25adc4a2-b07e-4096-bf63-d6cc31a3011e/paste.txt)
-
-
